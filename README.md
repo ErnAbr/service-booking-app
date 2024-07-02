@@ -1,3 +1,3 @@
 # My Project
 
-Service Booking App with React and SASS
+React and Sass -> Service booking app
