@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
-import { CardGrid } from "../CardGrid/CardGrid";
 import { Category } from "../Category/Category";
+import { CardCategoryGrid } from "../CardCategoryGrid/CardCategoryGrid";
 
 export const SearchCategory = ({ category }) => {
   return (
     <div>
-      <Category />
-      <CardGrid category={category} />
+      <Category iconSize="2em" />
+      <CardCategoryGrid category={category} />
     </div>
   );
 };

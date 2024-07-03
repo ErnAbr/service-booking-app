@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoLogoTux } from "react-icons/io";
 import { Button } from "../Button/Button";
 import styles from "./Topbar.module.scss";
@@ -19,21 +19,10 @@ export function Topbar() {
 
   const navigate = useNavigate();
   const user = useStore((state) => state.user);
-  const initializeUser = useStore((state) => state.initializeUser);
   const logOutUser = useStore((state) => state.logOutUser);
-
-  useEffect(() => {
-    initializeUser();
-  }, [initializeUser]);
 
   const handlePillClick = () => {
     setMenuOpen(!menuOpen);
-  };
-
-  const handleLogout = () => {
-    logOutUser();
-    setMenuOpen(false);
-    navigate(routes.HOME);
   };
 
   console.log(user);
@@ -63,12 +52,12 @@ export function Topbar() {
             <Pill text={user.substring(0, 1).toUpperCase()} onClick={handlePillClick} />
             {menuOpen && (
               <div className={styles.menu}>
-                <button onClick={handleLogout}>Logout</button>
+                <button onClick={() => logOutUser(setMenuOpen, navigate)}>Logout</button>
               </div>
             )}
           </>
         ) : (
-          <Button onClick={() => navigate(routes.LOGIN)} buttonType="primary">
+          <Button onClick={() => navigate(routes.LOGIN)} variant="primary">
             Login / Sign Up
           </Button>
         )}

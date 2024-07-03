@@ -31,7 +31,7 @@ export function Search() {
           placeholder="Search..."
           onChange={handleSearchChange}
         />
-        <Button buttonType="search" onClick={onClick}>
+        <Button variant="search" onClick={onClick}>
           <IconContext.Provider value={{ color: "white", size: "0.5em" }}>
             <HiSearch />
           </IconContext.Provider>

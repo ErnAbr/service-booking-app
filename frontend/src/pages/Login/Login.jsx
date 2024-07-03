@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../../components/Button/Button";
 import * as yup from "yup";
@@ -27,14 +26,10 @@ export const Login = () => {
   });
 
   const setUser = useStore((state) => state.setUser);
-  const initializeUser = useStore((state) => state.initializeUser);
   const user = useStore((state) => state.user);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    initializeUser();
-    if (user) navigate(routes.HOME);
-  }, [initializeUser, navigate, user]);
+  if (user) navigate("/");
 
   const onSubmit = (data) => {
     setUser(data.userName);

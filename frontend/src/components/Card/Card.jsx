@@ -1,48 +1,52 @@
 import PropTypes from "prop-types";
-import { Button } from "../Button/Button";
-import styles from "./Card.module.scss";
-import { FaHeart } from "react-icons/fa";
 
 export const Card = ({
   image,
-  serviceCategory,
-  serviceType,
-  servicePersonName,
-  serviceAddress,
-  isFavorite,
-  toggleFavorite,
+  category,
+  title,
+  subtitle,
+  description,
+  children,
+  cardBody,
+  cardClass,
+  imgClass,
+  categoryClass,
+  titleClass,
+  subtitleClass,
+  descriptionClass,
+  bottomClass,
 }) => {
   return (
-    <div className={styles.card}>
-      <img className={styles.imgStyle} src={image} alt="card-image" />
-      <div className={styles.cardBody}>
+    <div className={cardClass}>
+      <img className={imgClass} src={image} alt="card-image" />
+      <div className={cardBody}>
         <div>
-          <div className={styles.serviceCategory}>{serviceCategory}</div>
+          <div className={categoryClass}>{category}</div>
         </div>
-        <h4>{serviceType}</h4>
+        <h4 className={titleClass}>{title}</h4>
         <div>
-          <div className={styles.servicePersonName}>{servicePersonName}</div>
-          <p>{serviceAddress}</p>
+          <div className={subtitleClass}>{subtitle}</div>
+          <p className={descriptionClass}>{description}</p>
         </div>
-        <div className={styles.cardBottom}>
-          <Button buttonType="primary">Book Now</Button>
-          <div onClick={toggleFavorite}>
-            <FaHeart size="2em" className={isFavorite ? styles.favCard : styles.heartIcon} />
-          </div>
-          
-        </div>
+        <div className={bottomClass}>{children}</div>
       </div>
     </div>
   );
 };
 
 Card.propTypes = {
-  cardId: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
-  serviceCategory: PropTypes.string.isRequired,
-  serviceType: PropTypes.string.isRequired,
-  servicePersonName: PropTypes.string.isRequired,
-  serviceAddress: PropTypes.string.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  toggleFavorite: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  children: PropTypes.node,
+  cardBody: PropTypes.string,
+  cardClass: PropTypes.string,
+  imgClass: PropTypes.string,
+  categoryClass: PropTypes.string,
+  titleClass: PropTypes.string,
+  subtitleClass: PropTypes.string,
+  descriptionClass: PropTypes.string,
+  bottomClass: PropTypes.string,
 };

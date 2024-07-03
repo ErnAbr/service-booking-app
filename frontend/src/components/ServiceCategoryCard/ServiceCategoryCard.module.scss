@@ -34,20 +34,18 @@ p {
   }
 }
 
-.cardBody button {
-  align-self: flex-start;
-  border-radius: 10px !important;
-  width: 50%;
-  margin-top: 5px;
+.cardBottom {
+  display: flex;
+  justify-content: space-between;
 }
 
-.servicePersonName {
+.subtitle {
   font-weight: 700;
   color: #7559f0;
   margin-bottom: 2px;
 }
 
-.serviceCategory {
+.category {
   font-size: smaller;
   font-weight: 600;
   display: inline;
@@ -55,11 +53,6 @@ p {
   background-color: #e7d5fd;
   padding: 7px;
   border-radius: 25px;
-}
-
-.cardBottom {
-  display: flex;
-  justify-content: space-between;
 }
 
 .heartIcon,
@@ -75,4 +68,11 @@ p {
 
 .favCard {
   color: red;
+}
+
+.cardBody button {
+  align-self: flex-start;
+  border-radius: 10px !important;
+  width: 50%;
+  margin-top: 5px;
 }
