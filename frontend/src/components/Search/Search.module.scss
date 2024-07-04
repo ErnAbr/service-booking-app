@@ -1,0 +1,38 @@
+.greetingText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+p,
+.greetingText,
+.searchInput {
+  margin-top: 25px;
+}
+
+p {
+  color: #b9b9bb;
+}
+
+.searchInput {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 300px;
+  height: 40px;
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  border-radius: 7px;
+}
+
+.serviceRepair {
+  font-weight: bold;
+  color: #7a58ef;
+}

@@ -1,0 +1,14 @@
+.pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: #7b58efb4;
+  color: white;
+  border-radius: 50%;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+}
