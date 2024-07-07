@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Business = require("../models/company.model");
+const Booking = require("../models/booking.model");
 const isValidObjectId = require("../middleware/isValidObjectId");
 
 router.get("/", async (_, res) => {
@@ -77,6 +78,31 @@ router.put("/:id", isValidObjectId, async (req, res) => {
     });
 
     return res.status(200).send({ message: "Business updated successfully", updatedBusiness });
+  } catch (error) {
+    return res.status(500).send({ message: "Internal Server Error", error: error.message });
+  }
+});
+
+router.get("/:businessId/bookings/date/:date", async (req, res) => {
+  try {
+    const { businessId, date } = req.params;
+    const startDate = new Date(date);
+    const endDate = new Date(date);
+    endDate.setDate(endDate.getDate() + 1);
+
+    const bookings = await Booking.find({
+      companyId: businessId,
+      orderDateTime: {
+        $gte: startDate,
+        $lt: endDate,
+      },
+    });
+
+    if (bookings.length === 0) {
+      return res.status(404).send({ message: "No Bookings Found" });
+    }
+
+    return res.status(200).send(bookings);
   } catch (error) {
     return res.status(500).send({ message: "Internal Server Error", error: error.message });
   }
