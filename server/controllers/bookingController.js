@@ -13,7 +13,7 @@ router.get("/user/:email", async (req, res) => {
       return res.status(404).send({ message: "No Orders found" });
     }
 
-    res.send(200, userBookings);
+    res.status(200).send(userBookings);
   } catch (error) {
     return res.status(500).send({ message: "Internal Server Error", error: error.message });
   }
