@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const BookingSchema = new Schema({
   companyId: {
     type: Schema.Types.ObjectId,
-    ref: "Company",
+    ref: "Business",
     required: true,
   },
   orderDateTime: {

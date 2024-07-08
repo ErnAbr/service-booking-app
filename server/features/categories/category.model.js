@@ -5,7 +5,7 @@ const CategorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  backgroundcolor: {
+  backgroundColor: {
     type: String,
     required: true,
   },

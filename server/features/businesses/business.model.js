@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const CompanySchema = new mongoose.Schema({
+const BusinessSchema = new mongoose.Schema({
   companyName: {
     type: String,
     required: true,
@@ -33,7 +33,7 @@ const CompanySchema = new mongoose.Schema({
   },
 });
 
-CompanySchema.set("toJSON", {
+BusinessSchema.set("toJSON", {
   transform: function (_, ret) {
     ret.id = ret._id;
     delete ret._id;
@@ -41,4 +41,4 @@ CompanySchema.set("toJSON", {
   },
 });
 
-module.exports = mongoose.model("Company", CompanySchema);
+module.exports = mongoose.model("Business", BusinessSchema);
