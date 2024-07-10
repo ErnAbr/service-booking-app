@@ -1,20 +1,21 @@
 const jwt = require("jsonwebtoken");
 
 const authMiddleware = (req, res, next) => {
-  const authHeader = req.headers.authorization;
+  const token =
+    req.headers.authorization && req.headers.authorization.startsWith("Bearer ")
+      ? req.headers.authorization.split(" ")[1]
+      : req.cookies.token;
 
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    res.status(401).send({ error: "Not authenticated" });
-    return;
+  if (!token) {
+    return res.status(401).send({ message: "Unauthorized: No token provided" });
   }
 
-  const token = authHeader.split(" ")[1];
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-    req.currentUser = payload;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.currentUser = decoded;
     next();
-  } catch (err) {
-    res.status(401).send({ error: "Not authenticated" });
+  } catch (error) {
+    return res.status(401).send({ message: "Unauthorized: Invalid token" });
   }
 };
 

@@ -8,6 +8,13 @@ const login = async (req, res) => {
     return res.status(401).json({ message: "Incorrect email or password" });
   }
   const token = generateToken({ id: user._id });
+
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV !== "development",
+    sameSite: "strict",
+  });
+
   return res.status(200).json({ token, user });
 };
 
