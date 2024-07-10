@@ -1,15 +1,14 @@
 import styles from "./Pill.module.scss";
-import PropTypes from "prop-types";
 
-export const Pill = ({ text, onClick }) => {
+interface PillProps {
+  text: string;
+  onClick: () => void;
+}
+
+export const Pill = ({ text, onClick }: PillProps) => {
   return (
     <div className={styles.pill} onClick={onClick}>
       {text}
     </div>
   );
-};
-
-Pill.propTypes = {
-  text: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
 };

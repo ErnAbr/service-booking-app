@@ -2,7 +2,14 @@ import { create } from "zustand";
 import { routes } from "../navigation/routes";
 import { USER_STORAGE_KEY } from "../constants/constants";
 
-export const useStore = create((set) => ({
+interface StoreState {
+  user: string | null;
+  setUser: (user: string) => void;
+  logOutUser: (setMenuOpen: (open: boolean) => void, navigate: (path: string) => void) => void;
+  initializeUser: () => void;
+}
+
+export const useStore = create<StoreState>((set) => ({
   user: null,
   setUser: (user) => {
     set({ user });

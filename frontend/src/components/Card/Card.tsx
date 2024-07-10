@@ -1,4 +1,21 @@
-import PropTypes from "prop-types";
+import { ReactNode } from "react";
+
+interface CardProps {
+  image: string;
+  category: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  children?: ReactNode;
+  cardBody?: string;
+  cardClass?: string;
+  imgClass?: string;
+  categoryClass?: string;
+  titleClass?: string;
+  subtitleClass?: string;
+  descriptionClass?: string;
+  bottomClass?: string;
+}
 
 export const Card = ({
   image,
@@ -15,7 +32,7 @@ export const Card = ({
   subtitleClass,
   descriptionClass,
   bottomClass,
-}) => {
+}: CardProps) => {
   return (
     <div className={cardClass}>
       <img className={imgClass} src={image} alt="card-image" />
@@ -32,21 +49,4 @@ export const Card = ({
       </div>
     </div>
   );
-};
-
-Card.propTypes = {
-  image: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  children: PropTypes.node,
-  cardBody: PropTypes.string,
-  cardClass: PropTypes.string,
-  imgClass: PropTypes.string,
-  categoryClass: PropTypes.string,
-  titleClass: PropTypes.string,
-  subtitleClass: PropTypes.string,
-  descriptionClass: PropTypes.string,
-  bottomClass: PropTypes.string,
 };

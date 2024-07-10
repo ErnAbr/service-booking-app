@@ -15,6 +15,11 @@ const schema = yup
   })
   .required();
 
+interface LoginFormInputs {
+  userName: string;
+  password: string;
+}
+
 export const Login = () => {
   const {
     register,
@@ -31,7 +36,7 @@ export const Login = () => {
 
   if (user) navigate("/");
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: LoginFormInputs) => {
     setUser(data.userName);
   };
 

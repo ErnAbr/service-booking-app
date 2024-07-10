@@ -1,17 +1,22 @@
-import PropTypes from "prop-types";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { cardProps } from "../../constants/cardData";
 import { ServiceCategoryCard } from "../ServiceCategoryCard/ServiceCategoryCard";
 import { Grid } from "../Grid/Grid";
 import styles from "./CardCategoryGrid.module.scss";
 
-export const CardCategoryGrid = ({ category }) => {
-  const [favorites, setFavorites] = useLocalStorage("favorites", []);
+interface CardCategoryGridProps {
+  category: string;
+}interface CardCategoryGridProps {
+  category: string;
+}
 
-  const toggleFavorite = (cardId) => {
-    setFavorites((prevFavorites) => {
+export const CardCategoryGrid = ({ category }: CardCategoryGridProps) => {
+  const [favorites, setFavorites] = useLocalStorage<number[]>("favorites", []);
+
+  const toggleFavorite = (cardId: number) => {
+    setFavorites((prevFavorites: number[]) => {
       const updatedFavorites = prevFavorites.includes(cardId)
-        ? prevFavorites.filter((id) => id !== cardId)
+        ? prevFavorites.filter((id: number) => id !== cardId)
         : [...prevFavorites, cardId];
       return updatedFavorites;
     });
@@ -38,10 +43,4 @@ export const CardCategoryGrid = ({ category }) => {
       ))}
     </Grid>
   );
-};
-
-CardCategoryGrid.propTypes = {
-  category: PropTypes.string.isRequired,
-  cardId: PropTypes.number,
-  serviceCategory: PropTypes.string,
 };

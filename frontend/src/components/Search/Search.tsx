@@ -2,12 +2,12 @@ import styles from "./Search.module.scss";
 import { Button } from "../Button/Button";
 import { HiSearch } from "react-icons/hi";
 import { IconContext } from "react-icons";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
-export function Search() {
+export const Search = () => {
   const [searchText, setSearchText] = useState("");
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
   };
 
@@ -39,4 +39,4 @@ export function Search() {
       </div>
     </div>
   );
-}
+};

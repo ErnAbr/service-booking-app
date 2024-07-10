@@ -1,18 +1,18 @@
-import PropTypes from "prop-types";
+import { ReactNode } from "react";
 
-export const Grid = ({ children, heading, gridContainerClass, headingClass, gridClass }) => {
+interface GridProps {
+  children: ReactNode;
+  heading?: string;
+  gridContainerClass?: string;
+  headingClass?: string;
+  gridClass?: string;
+}
+
+export const Grid = ({ children, heading, gridContainerClass, headingClass, gridClass }: GridProps) => {
   return (
     <div className={gridContainerClass}>
       <h3 className={headingClass}>{heading}</h3>
       <div className={gridClass}>{children}</div>
     </div>
   );
-};
-
-Grid.propTypes = {
-  children: PropTypes.node.isRequired,
-  heading: PropTypes.string,
-  gridContainerClass: PropTypes.string,
-  headingClass: PropTypes.string,
-  gridClass: PropTypes.string,
 };

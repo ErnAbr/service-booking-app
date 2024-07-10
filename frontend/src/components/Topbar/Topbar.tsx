@@ -30,7 +30,7 @@ export function Topbar() {
   return (
     <div className={styles.topbarContainer}>
       <div className={styles.logoSection}>
-        <IconContext.Provider value={{ color: "#7A58EF", size: "4em", title: "Logoipsum" }}>
+        <IconContext.Provider value={{ color: "#7A58EF", size: "4em" }}>
           <IoLogoTux />
         </IconContext.Provider>
         <span>Logoipsum</span>

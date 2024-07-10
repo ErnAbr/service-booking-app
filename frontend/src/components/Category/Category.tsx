@@ -1,16 +1,19 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
 import { Button } from "../Button/Button";
 import styles from "./Category.module.scss";
 import { useNavigate } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { categories } from "../../constants/categoryData";
 
-export const Category = ({ iconSize }) => {
-  const [selectedCategory, setSelectedCategory] = useState("");
+interface CategoryProps {
+  iconSize: string;
+}
+
+export const Category = ({ iconSize }: CategoryProps) => {
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
   const navigate = useNavigate();
 
-  const handleCategoryClick = (category) => {
+  const handleCategoryClick = (category: string) => {
     const toggleCategory = selectedCategory !== category.toLowerCase() ? category.toLowerCase() : "";
     setSelectedCategory(toggleCategory);
     navigate(toggleCategory ? `/?category=${toggleCategory}` : "/");
@@ -35,8 +38,4 @@ export const Category = ({ iconSize }) => {
       ))}
     </div>
   );
-};
-
-Category.propTypes = {
-  iconSize: PropTypes.string,
 };

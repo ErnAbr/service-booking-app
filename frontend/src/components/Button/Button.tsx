@@ -1,17 +1,17 @@
-import PropTypes from "prop-types";
 import styles from "./Button.module.scss";
 
-export function Button({ children, variant, onClick, isSelected }) {
+interface ButtonProps {
+  onClick?: JSX.IntrinsicElements["button"]["onClick"];
+  children: React.ReactNode;
+  variant: "primary" | "search" | "square";
+  isSelected?: boolean;
+  type?: "button" | "submit" | "reset";
+}
+
+export const Button = ({ children, variant, onClick, isSelected }: ButtonProps) => {
   return (
     <button className={`${styles.button} ${styles[variant]} ${isSelected ? styles.selected : ""}`} onClick={onClick}>
       {children}
     </button>
   );
-}
-
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  variant: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
-  isSelected: PropTypes.bool,
 };

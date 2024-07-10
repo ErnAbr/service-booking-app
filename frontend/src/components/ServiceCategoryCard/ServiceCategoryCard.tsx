@@ -1,8 +1,17 @@
-import PropTypes from "prop-types";
 import styles from "./ServiceCategoryCard.module.scss";
 import { FaHeart } from "react-icons/fa";
 import { Button } from "../Button/Button";
 import { Card } from "../Card/Card";
+
+interface ServiceCategoryCardProps {
+  image: string;
+  serviceCategory: string;
+  serviceType: string;
+  servicePersonName: string;
+  serviceAddress: string;
+  isFavorite: boolean;
+  toggleFavorite: () => void;
+}
 
 export const ServiceCategoryCard = ({
   image,
@@ -12,7 +21,7 @@ export const ServiceCategoryCard = ({
   serviceAddress,
   isFavorite,
   toggleFavorite,
-}) => {
+}: ServiceCategoryCardProps) => {
   return (
     <Card
       image={image}
@@ -35,14 +44,4 @@ export const ServiceCategoryCard = ({
       </div>
     </Card>
   );
-};
-
-ServiceCategoryCard.propTypes = {
-  image: PropTypes.string.isRequired,
-  serviceCategory: PropTypes.string.isRequired,
-  serviceType: PropTypes.string.isRequired,
-  servicePersonName: PropTypes.string.isRequired,
-  serviceAddress: PropTypes.string.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  toggleFavorite: PropTypes.func.isRequired,
 };
