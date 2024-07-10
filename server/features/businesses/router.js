@@ -6,7 +6,7 @@ const getBookingsByDate = require("./queries/getBookingsByDate");
 const createBusiness = require("./mutations/createBusiness");
 const updateBusiness = require("./mutations/updateBusiness");
 const isValidObjectId = require("../../middleware/isValidObjectId");
-const authMiddleware = require("../auth/helpers/authMiddleware");
+const authMiddleware = require("../../middleware/authMiddleware");
 
 const ROUTER_BASE_API = "/api/businesses";
 const businessRouter = express.Router();

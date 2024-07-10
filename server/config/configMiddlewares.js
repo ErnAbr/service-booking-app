@@ -8,7 +8,7 @@ const configMiddlewares = (server) => {
     cors({
       origin: process.env.ORIGIN,
       credentials: true,
-    })
+    }),
   );
   server.use(cookieParser());
 };

@@ -1,7 +1,7 @@
 const express = require("express");
 const getCategories = require("./queries/getCategories");
 const postCategories = require("./mutations/postCategories");
-const authMiddleware = require("../auth/helpers/authMiddleware");
+const authMiddleware = require("../../middleware/authMiddleware");
 
 const ROUTER_BASE_API = "/api/categories";
 const categoriesRouter = express.Router();

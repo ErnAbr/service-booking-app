@@ -3,7 +3,7 @@ const getUserBookings = require("./queries/getUserBookings");
 const createBooking = require("./mutations/createBooking");
 const deleteBooking = require("./mutations/deleteBooking");
 const isValidObjectId = require("../../middleware/isValidObjectId");
-const authMiddleware = require("../auth/helpers/authMiddleware");
+const authMiddleware = require("../../middleware/authMiddleware");
 
 const ROUTER_BASE_API = "/api/bookings";
 const bookingRouter = express.Router();
