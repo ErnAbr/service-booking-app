@@ -11,5 +11,6 @@ configMiddlewares(server);
 configRoutes(server);
 
 server.listen(process.env.PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`server is listening to port ${process.env.PORT}`);
 });

@@ -14,7 +14,7 @@ const BookingSchema = new Schema({
   userEmail: {
     type: String,
     required: true,
-    match: [/.+\@.+\..+/, "Invalid Email Address"],
+    match: [/.+@.+\..+/, "Invalid Email Address"],
   },
   userName: {
     type: String,

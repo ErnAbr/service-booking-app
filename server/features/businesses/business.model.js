@@ -25,7 +25,7 @@ const BusinessSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    match: [/.+\@.+\..+/, "Please fill a valid email address"],
+    match: [/.+@.+\..+/, "Invalid Email Address"],
   },
   photoUrl: {
     type: String,
