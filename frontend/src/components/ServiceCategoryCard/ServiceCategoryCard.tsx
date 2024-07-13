@@ -4,31 +4,31 @@ import { Button } from "../Button/Button";
 import { Card } from "../Card/Card";
 
 interface ServiceCategoryCardProps {
-  image: string;
-  serviceCategory: string;
-  serviceType: string;
-  servicePersonName: string;
-  serviceAddress: string;
+  photoUrl: string;
+  category: string;
+  companyName: string;
+  representative: string;
+  address: string;
   isFavorite: boolean;
   toggleFavorite: () => void;
 }
 
 export const ServiceCategoryCard = ({
-  image,
-  serviceCategory,
-  serviceType,
-  servicePersonName,
-  serviceAddress,
+  photoUrl,
+  category,
+  companyName,
+  representative,
+  address,
   isFavorite,
   toggleFavorite,
 }: ServiceCategoryCardProps) => {
   return (
     <Card
-      image={image}
-      category={serviceCategory}
-      title={serviceType}
-      subtitle={servicePersonName}
-      description={serviceAddress}
+      image={`${photoUrl}`}
+      category={category}
+      title={companyName}
+      subtitle={representative}
+      description={address}
       cardBody={styles.cardBody}
       cardClass={styles.card}
       imgClass={styles.imgStyle}

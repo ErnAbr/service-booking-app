@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { routes } from "../navigation/routes";
-import { USER_STORAGE_KEY } from "../constants/constants";
+
+const USER_STORAGE_KEY = import.meta.env.VITE_USER_STORAGE_KEY;
 
 interface StoreState {
   user: string | null;

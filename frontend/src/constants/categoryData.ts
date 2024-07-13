@@ -4,10 +4,10 @@ import { PiPaintBrushHouseholdBold } from "react-icons/pi";
 import { FaTruckMoving } from "react-icons/fa6";
 
 export const categories = [
-  { icon: MdOutlineCleaningServices, color: "#BA1FED", text: "Cleaning" },
-  { icon: GiAutoRepair, color: "#EEB625", text: "Repair" },
-  { icon: PiPaintBrushHouseholdBold, color: "#049B9D", text: "Painting" },
-  { icon: FaTruckMoving, color: "#E53E3E", text: "Shifting" },
-  { icon: MdPlumbing, color: "#E99114", text: "Plumbing" },
-  { icon: MdElectricBolt, color: "#0064C2", text: "Electric" },
+  { imageUrl: MdOutlineCleaningServices, backgroundColor: "#BA1FED", categoryName: "Cleaning" },
+  { imageUrl: GiAutoRepair, backgroundColor: "#EEB625", categoryName: "Repair" },
+  { imageUrl: PiPaintBrushHouseholdBold, backgroundColor: "#049B9D", categoryName: "Painting" },
+  { imageUrl: FaTruckMoving, backgroundColor: "#E53E3E", categoryName: "Shifting" },
+  { imageUrl: MdPlumbing, backgroundColor: "#E99114", categoryName: "Plumbing" },
+  { imageUrl: MdElectricBolt, backgroundColor: "#0064C2", categoryName: "Electric" },
 ];

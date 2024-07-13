@@ -13,8 +13,8 @@ export const Category = ({ iconSize }: CategoryProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const navigate = useNavigate();
 
-  const handleCategoryClick = (category: string) => {
-    const toggleCategory = selectedCategory !== category.toLowerCase() ? category.toLowerCase() : "";
+  const handleCategoryClick = (categoryName: string) => {
+    const toggleCategory = selectedCategory !== categoryName.toLowerCase() ? categoryName.toLowerCase() : "";
     setSelectedCategory(toggleCategory);
     navigate(toggleCategory ? `/?category=${toggleCategory}` : "/");
   };
@@ -25,14 +25,14 @@ export const Category = ({ iconSize }: CategoryProps) => {
         <Button
           key={index}
           variant="square"
-          onClick={() => handleCategoryClick(category.text)}
-          isSelected={selectedCategory === category.text.toLowerCase()}
+          onClick={() => handleCategoryClick(category.categoryName)}
+          isSelected={selectedCategory === category.categoryName.toLowerCase()}
         >
           <div>
-            <IconContext.Provider value={{ color: category.color, size: iconSize }}>
-              <category.icon />
+            <IconContext.Provider value={{ color: category.backgroundColor, size: iconSize }}>
+              <category.imageUrl />
             </IconContext.Provider>
-            {category.text}
+            {category.categoryName}
           </div>
         </Button>
       ))}
