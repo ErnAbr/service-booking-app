@@ -3,7 +3,7 @@ import { Home } from "../pages/Home";
 import { Services } from "../pages/Services";
 import { AboutUs } from "../pages/AboutUs";
 import { Login } from "../pages/Login/Login";
-import { Register } from "../pages/Register";
+import { Register } from "../pages/Register/Register";
 import { NotFound } from "../pages/NotFound";
 import { MainLayout } from "./MainLayout"; // Ensure the path is correct
 import { routes } from "./routes"; // Ensure the path is correct

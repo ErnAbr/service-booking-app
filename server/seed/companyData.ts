@@ -1,6 +1,5 @@
 export const companies = [
   {
-    id: "1",
     companyName: "Jenny Wilson Cleaning",
     description: "Professional house cleaning services by Jenny Wilson.",
     address: "255 Grand Park Ave, New York",
@@ -10,7 +9,6 @@ export const companies = [
     photoUrl: "/img/cleaning.jpg",
   },
   {
-    id: "2",
     companyName: "John Doe Lawn Mowing",
     description: "Expert lawn mowing services by John Doe.",
     address: "123 Green St, Los Angeles",
@@ -20,7 +18,6 @@ export const companies = [
     photoUrl: "/img/gardening.jpg",
   },
   {
-    id: "3",
     companyName: "Alice Johnson Plumbing",
     description: "Reliable leak repair services by Alice Johnson.",
     address: "456 Waterway Dr, Chicago",
@@ -30,7 +27,6 @@ export const companies = [
     photoUrl: "/img/plumbing.jpg",
   },
   {
-    id: "4",
     companyName: "Michael Smith Electric",
     description: "Professional wiring services by Michael Smith.",
     address: "789 Powerline Rd, Miami",
@@ -40,7 +36,6 @@ export const companies = [
     photoUrl: "/img/electrician.jpg",
   },
   {
-    id: "5",
     companyName: "Emily Davis Child Care",
     description: "Quality child care services by Emily Davis.",
     address: "101 Main St, Houston",
@@ -50,7 +45,6 @@ export const companies = [
     photoUrl: "/img/babysitting.jpg",
   },
   {
-    id: "6",
     companyName: "Robert Brown Math Tutoring",
     description: "Expert math tutoring services by Robert Brown.",
     address: "202 Study Ln, Boston",
@@ -60,7 +54,6 @@ export const companies = [
     photoUrl: "/img/tutoring.jpg",
   },
   {
-    id: "7",
     companyName: "Jessica Williams Moving",
     description: "Efficient furniture moving services by Jessica Williams.",
     address: "303 Transit Ave, San Francisco",
@@ -70,7 +63,6 @@ export const companies = [
     photoUrl: "/img/moving.jpg",
   },
   {
-    id: "8",
     companyName: "David Miller Painting",
     description: "High-quality house painting services by David Miller.",
     address: "404 Color Blvd, Seattle",

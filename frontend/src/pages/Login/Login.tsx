@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "../../components/Button/Button";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,11 +7,12 @@ import { FaLock } from "react-icons/fa";
 import { routes } from "../../navigation/routes";
 import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "../../context/store";
+import { InputField } from "../../components/InputField/InputField";
 
 const schema = yup
   .object({
-    userName: yup.string().required("First Name is required"),
-    password: yup.string().required("Password is required"),
+    userName: yup.string().required("Your Username is Required"),
+    password: yup.string().required("Your Password is Required"),
   })
   .required();
 
@@ -25,7 +26,7 @@ export const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<LoginFormInputs>({
     resolver: yupResolver(schema),
     shouldFocusError: false,
   });
@@ -36,7 +37,7 @@ export const Login = () => {
 
   if (user) navigate("/");
 
-  const onSubmit = (data: LoginFormInputs) => {
+  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
     setUser(data.userName);
   };
 
@@ -48,23 +49,19 @@ export const Login = () => {
           <h3 className={styles.formTitle}>Please Log In</h3>
         </div>
         <form className={styles.formWrapper} onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.inputGroup}>
-            <label>Enter Your Username</label>
-            <input
-              {...register("userName", { required: true, maxLength: 20 })}
-              className={errors.userName ? styles.error : ""}
-            />
-          </div>
-
-          <div className={styles.inputGroup}>
-            <label>Enter Your Password</label>
-            <input
-              type="password"
-              {...register("password", { required: true })}
-              className={errors.password ? styles.error : ""}
-            />
-          </div>
-
+          <InputField
+            label="Enter Your Username"
+            name="userName"
+            register={register}
+            error={errors.userName}
+          />
+          <InputField
+            label="Enter Your Password"
+            name="password"
+            type="password"
+            register={register}
+            error={errors.password}
+          />
           <Button variant="primary" type="submit">
             Log In
           </Button>
