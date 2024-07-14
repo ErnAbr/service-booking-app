@@ -1,9 +1,15 @@
 import axios, { AxiosResponse } from "axios";
 import { IBusiness } from "src/types/business";
 import { ICategory } from "src/types/category";
-import { IUser } from "src/types/user";
+import {
+  IUserLogin,
+  IUserLoginResponse,
+  IUserRegister,
+  IUserRegisterResponse,
+} from "src/types/user";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+axios.defaults.withCredentials = true;
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
@@ -27,9 +33,9 @@ const Businesses = {
 };
 
 const User = {
-  login: (body: { email: string; password: string }) => requests.post<IUser>("auth/login", body),
-  register: (body: { userName: string; email: string; password: string }) =>
-    requests.post<IUser>("auth/register", body),
+  login: (body: IUserLogin) => requests.post<IUserLoginResponse>("auth/login", body),
+  register: (body: IUserRegister) => requests.post<IUserRegisterResponse>("auth/register", body),
+  logout: () => requests.post("auth/logout", {}),
 };
 
 const api = {

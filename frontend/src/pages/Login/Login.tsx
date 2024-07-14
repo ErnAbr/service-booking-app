@@ -8,6 +8,9 @@ import { routes } from "../../navigation/routes";
 import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "../../context/store";
 import { InputField } from "../../components/InputField/InputField";
+import api from "src/api/api";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 const schema = yup
   .object({
@@ -35,11 +38,23 @@ export const Login = () => {
   const user = useStore((state) => state.user);
   const navigate = useNavigate();
 
-  if (user) navigate("/");
-
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
-    setUser(data.userName);
+  const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
+    try {
+      const response = await api.User.login(data);
+      setUser(response.user.userName);
+      toast.success(response.message);
+      navigate(routes.HOME);
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Login failed");
+    }
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate(routes.HOME);
+      toast.error("You Are Already Logged In");
+    }
+  }, []);
 
   return (
     <div className={styles.container}>

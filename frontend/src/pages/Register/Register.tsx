@@ -9,6 +9,9 @@ import styles from "./Register.module.scss";
 import { Button } from "src/components/Button/Button";
 import { InputField } from "../../components/InputField/InputField";
 import { addYears, differenceInYears } from "date-fns";
+import { toast } from "react-toastify";
+import api from "src/api/api";
+import { useEffect } from "react";
 
 const schema = yup
   .object({
@@ -59,13 +62,25 @@ export const Register = () => {
   const user = useStore((state) => state.user);
   const navigate = useNavigate();
 
-  if (user) navigate("/");
+  useEffect(() => {
+    if (user) {
+      toast.error("You Are Already Logged In");
+      navigate(routes.HOME);
+    }
+  }, [user, navigate]);
 
-  const onSubmit: SubmitHandler<RegisterFormInputs> = (data) => {
+  const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
     const { repPassword, dateOfBirth, ...rest } = data;
-    const age = calculateAge(dateOfBirth);
+    const age = Number(calculateAge(dateOfBirth));
     const submissionData = { ...rest, age };
-    console.log(submissionData);
+
+    try {
+      const response = await api.User.register(submissionData);
+      toast.success(response.message);
+      navigate(routes.LOGIN);
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Registration failed");
+    }
   };
 
   return (

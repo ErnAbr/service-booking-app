@@ -3,6 +3,8 @@ import "./styles/Default.module.scss";
 import { Routes } from "./navigation/router";
 import { useStore } from "./context/store";
 import api from "./api/api";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const initializeUser = useStore((state) => state.initializeUser);
@@ -36,7 +38,12 @@ function App() {
     return <div>Initiating App...</div>;
   }
 
-  return <Routes />;
+  return (
+    <>
+      <Routes />
+      <ToastContainer closeOnClick position="bottom-right" theme="colored" />
+    </>
+  );
 }
 
 export default App;

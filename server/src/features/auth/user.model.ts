@@ -38,6 +38,16 @@ userSchema.method("isCorrectPassword", function (password: string) {
   return bcrypt.compare(password, this.password);
 });
 
+userSchema.set("toJSON", {
+  transform: function (_, ret) {
+    ret.id = ret._id;
+    delete ret._id;
+    delete ret.__v;
+    delete ret.password;
+    return ret;
+  },
+});
+
 const User = mongoose.model<IUser, UserModel>("User", userSchema);
 
 export default User;

@@ -2,6 +2,8 @@ import { create } from "zustand";
 import { routes } from "../navigation/routes";
 import { ICategory } from "src/types/category";
 import { IBusiness } from "src/types/business";
+import { toast } from "react-toastify";
+import api from "src/api/api";
 
 const USER_STORAGE_KEY = import.meta.env.VITE_USER_STORAGE_KEY;
 
@@ -28,11 +30,17 @@ export const useStore = create<StoreState>((set) => ({
     set({ user });
     localStorage.setItem(USER_STORAGE_KEY, user);
   },
-  logOutUser: (setMenuOpen, navigate) => {
-    set({ user: null });
-    localStorage.removeItem(USER_STORAGE_KEY);
-    setMenuOpen(false);
-    navigate(routes.HOME);
+  logOutUser: async (setMenuOpen, navigate) => {
+    try {
+      await api.User.logout();
+      set({ user: null });
+      localStorage.removeItem(USER_STORAGE_KEY);
+      setMenuOpen(false);
+      navigate(routes.HOME);
+      toast.success("Successfully logged out");
+    } catch (error) {
+      toast.error("Logout failed");
+    }
   },
   initializeUser: () => {
     const storedUser = localStorage.getItem(USER_STORAGE_KEY);
