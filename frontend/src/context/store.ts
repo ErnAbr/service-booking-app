@@ -14,12 +14,8 @@ interface StoreState {
   initializeUser: () => void;
   categories: ICategory[] | null;
   setCategories: (categories: ICategory[]) => void;
-  isCategoriesLoading: boolean;
-  setCategoriesLoading: (loading: boolean) => void;
   businesses: IBusiness[] | null;
   setBusinesses: (businesses: IBusiness[]) => void;
-  isBusinessesLoading: boolean;
-  setBusinessesLoading: (loading: boolean) => void;
   isLoading: boolean;
   setLoading: (loading: boolean) => void;
 }
@@ -52,17 +48,9 @@ export const useStore = create<StoreState>((set) => ({
   setCategories: (categories) => {
     set({ categories });
   },
-  isCategoriesLoading: false,
-  setCategoriesLoading: (loading) => {
-    set({ isCategoriesLoading: loading });
-  },
   businesses: null,
   setBusinesses: (businesses) => {
     set({ businesses });
-  },
-  isBusinessesLoading: false,
-  setBusinessesLoading: (loading) => {
-    set({ isBusinessesLoading: loading });
   },
   isLoading: false,
   setLoading: (loading) => {
