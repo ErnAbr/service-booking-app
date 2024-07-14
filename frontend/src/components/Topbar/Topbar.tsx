@@ -25,8 +25,6 @@ export function Topbar() {
     setMenuOpen(!menuOpen);
   };
 
-  console.log(user);
-
   return (
     <div className={styles.topbarContainer}>
       <div className={styles.logoSection}>

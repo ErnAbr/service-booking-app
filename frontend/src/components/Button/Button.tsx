@@ -10,7 +10,10 @@ interface ButtonProps {
 
 export const Button = ({ children, variant, onClick, isSelected }: ButtonProps) => {
   return (
-    <button className={`${styles.button} ${styles[variant]} ${isSelected ? styles.selected : ""}`} onClick={onClick}>
+    <button
+      className={`${styles.button} ${styles[variant]} ${isSelected ? styles.selected : ""}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

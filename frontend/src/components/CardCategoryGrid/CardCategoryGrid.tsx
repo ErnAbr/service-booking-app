@@ -1,8 +1,8 @@
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { companies } from "../../constants/cardData";
 import { ServiceCategoryCard } from "../ServiceCategoryCard/ServiceCategoryCard";
 import { Grid } from "../Grid/Grid";
 import styles from "./CardCategoryGrid.module.scss";
+import { useStore } from "src/context/store";
 
 interface CardCategoryGridProps {
   category: string;
@@ -13,6 +13,7 @@ interface CardCategoryGridProps {
 
 export const CardCategoryGrid = ({ category }: CardCategoryGridProps) => {
   const [favorites, setFavorites] = useLocalStorage<string[]>("favorites", []);
+  const businesses = useStore((state) => state.businesses);
 
   const toggleFavorite = (cardId: string) => {
     setFavorites((prevFavorites: string[]) => {
@@ -24,8 +25,8 @@ export const CardCategoryGrid = ({ category }: CardCategoryGridProps) => {
   };
 
   const filteredItems = category
-    ? companies.filter((props) => props.category.toLowerCase() === category.toLowerCase())
-    : companies;
+    ? businesses?.filter((props) => props.category.toLowerCase() === category.toLowerCase())
+    : businesses;
 
   return (
     <Grid
@@ -34,7 +35,7 @@ export const CardCategoryGrid = ({ category }: CardCategoryGridProps) => {
       headingClass={styles.heading}
       gridClass={styles.grid}
     >
-      {filteredItems.map((props) => (
+      {filteredItems?.map((props) => (
         <ServiceCategoryCard
           key={props.id}
           isFavorite={favorites.includes(props.id)}

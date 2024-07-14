@@ -8,7 +8,13 @@ interface GridProps {
   gridClass?: string;
 }
 
-export const Grid = ({ children, heading, gridContainerClass, headingClass, gridClass }: GridProps) => {
+export const Grid = ({
+  children,
+  heading,
+  gridContainerClass,
+  headingClass,
+  gridClass,
+}: GridProps) => {
   return (
     <div className={gridContainerClass}>
       <h3 className={headingClass}>{heading}</h3>
