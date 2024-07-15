@@ -16,5 +16,5 @@ export const RequireAuth = () => {
     }
   }, []);
 
-  return user ? <Outlet /> : <Navigate to={routes.HOME} />;
+  return user ? <Outlet /> : <Navigate to={routes.LOGIN} />;
 };

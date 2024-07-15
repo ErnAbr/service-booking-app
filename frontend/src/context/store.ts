@@ -28,10 +28,10 @@ export const useStore = create<StoreState>((set) => ({
   },
   logOutUser: async (setMenuOpen, navigate) => {
     try {
-      await api.User.logout();
       navigate(routes.HOME);
       setMenuOpen(false);
       set({ user: null });
+      await api.User.logout();
       toast.success("Successfully logged out");
       localStorage.removeItem(USER_STORAGE_KEY);
     } catch (error) {
