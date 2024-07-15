@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./Login.module.scss";
 import { FaLock } from "react-icons/fa";
-import { routes } from "../../navigation/routes";
+import { routes } from "../../navigation/routes/routes";
 import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "../../context/store";
 import { InputField } from "../../components/InputField/InputField";
@@ -48,15 +48,6 @@ export const Login = () => {
       toast.error(error.response?.data?.message || "Login failed");
     }
   };
-
-  useEffect(() => {
-    if (user) {
-      navigate(routes.HOME);
-      toast.error("You Are Already Logged In");
-    }
-  }, []);
-
-  console.log(user);
 
   return (
     <div className={styles.container}>

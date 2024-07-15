@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BsFillPencilFill } from "react-icons/bs";
-import { routes } from "../../navigation/routes";
+import { routes } from "../../navigation/routes/routes";
 import styles from "./Register.module.scss";
 import { Button } from "src/components/Button/Button";
 import { InputField } from "../../components/InputField/InputField";
@@ -61,13 +61,6 @@ export const Register = () => {
 
   const user = useStore((state) => state.user);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (user) {
-      toast.error("You Are Already Logged In");
-      navigate(routes.HOME);
-    }
-  }, [user, navigate]);
 
   const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
     const { repPassword, dateOfBirth, ...rest } = data;

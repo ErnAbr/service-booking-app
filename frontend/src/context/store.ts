@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { routes } from "../navigation/routes";
+import { routes } from "../navigation/routes/routes";
 import { ICategory } from "src/types/category";
 import { IBusiness } from "src/types/business";
 import { toast } from "react-toastify";
@@ -29,11 +29,11 @@ export const useStore = create<StoreState>((set) => ({
   logOutUser: async (setMenuOpen, navigate) => {
     try {
       await api.User.logout();
-      set({ user: null });
-      localStorage.removeItem(USER_STORAGE_KEY);
-      setMenuOpen(false);
       navigate(routes.HOME);
+      setMenuOpen(false);
+      set({ user: null });
       toast.success("Successfully logged out");
+      localStorage.removeItem(USER_STORAGE_KEY);
     } catch (error) {
       toast.error("Logout failed");
     }

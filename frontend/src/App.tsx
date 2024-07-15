@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "./styles/Default.module.scss";
-import { Routes } from "./navigation/router";
+import { Routes } from "./navigation/routes/router";
 import { useStore } from "./context/store";
 import api from "./api/api";
 import { ToastContainer } from "react-toastify";

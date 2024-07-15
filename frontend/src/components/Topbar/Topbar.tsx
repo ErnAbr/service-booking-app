@@ -4,7 +4,7 @@ import { Button } from "../Button/Button";
 import styles from "./Topbar.module.scss";
 import { IconContext } from "react-icons";
 import { Link, useNavigate } from "react-router-dom";
-import { routes } from "../../navigation/routes";
+import { routes } from "../../navigation/routes/routes";
 import { useStore } from "../../context/store";
 import { Pill } from "../Pill/Pill";
 

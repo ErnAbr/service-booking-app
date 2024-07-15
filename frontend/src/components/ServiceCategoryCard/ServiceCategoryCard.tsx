@@ -2,8 +2,11 @@ import styles from "./ServiceCategoryCard.module.scss";
 import { FaHeart } from "react-icons/fa";
 import { Button } from "../Button/Button";
 import { Card } from "../Card/Card";
+import { routes } from "src/navigation/routes/routes";
+import { useNavigate } from "react-router-dom";
 
 interface ServiceCategoryCardProps {
+  id: string;
   photoUrl: string;
   category: string;
   companyName: string;
@@ -14,6 +17,7 @@ interface ServiceCategoryCardProps {
 }
 
 export const ServiceCategoryCard = ({
+  id,
   photoUrl,
   category,
   companyName,
@@ -22,6 +26,12 @@ export const ServiceCategoryCard = ({
   isFavorite,
   toggleFavorite,
 }: ServiceCategoryCardProps) => {
+  const navigate = useNavigate();
+
+  const handleBookNow = () => {
+    navigate(routes.BUSINESS_PAGE.replace(":id", id));
+  };
+
   return (
     <Card
       image={`${photoUrl}`}
@@ -38,7 +48,9 @@ export const ServiceCategoryCard = ({
       descriptionClass={styles.description}
       bottomClass={styles.cardBottom}
     >
-      <Button variant="primary">Book Now</Button>
+      <Button variant="primary" onClick={handleBookNow}>
+        Book Now
+      </Button>
       <div onClick={toggleFavorite}>
         <FaHeart size="2em" className={isFavorite ? styles.favCard : styles.heartIcon} />
       </div>
