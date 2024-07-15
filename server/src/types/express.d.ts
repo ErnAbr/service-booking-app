@@ -4,6 +4,7 @@ declare global {
   namespace Express {
     interface Request {
       currentUser?: string | JwtPayload;
+      user?: string | JwtPayload;
     }
   }
 }

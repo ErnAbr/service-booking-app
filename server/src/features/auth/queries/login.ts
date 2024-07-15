@@ -8,7 +8,7 @@ export const login: RequestHandler = async (req, res) => {
   if (!user || !(await user.isCorrectPassword(password))) {
     return res.status(401).json({ message: "Incorrect User Name or Password" });
   }
-  const token = generateToken({ id: user._id });
+  const token = generateToken({ id: user._id, admin: user.admin });
 
   res.cookie("token", token, {
     httpOnly: true,
@@ -16,5 +16,5 @@ export const login: RequestHandler = async (req, res) => {
     sameSite: "strict",
   });
 
-  return res.status(200).json({ user, message: "Successfully Logged In", token });
+  return res.status(200).json({ user, message: "Successfully Logged In" });
 };

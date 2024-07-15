@@ -2,7 +2,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { envVariables } from "../config/configEnvVariables";
 import { RequestHandler } from "express";
 
-export const authMiddleware: RequestHandler = (req, res, next) => {
+export const userProtected: RequestHandler = (req, res, next) => {
   const token =
     req.headers.authorization && req.headers.authorization.startsWith("Bearer ")
       ? req.headers.authorization.split(" ")[1]

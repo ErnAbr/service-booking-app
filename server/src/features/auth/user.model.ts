@@ -6,6 +6,7 @@ interface IUser extends Document {
   age?: number;
   email: string;
   password: string;
+  admin: boolean;
 }
 
 interface IUserMethods {
@@ -20,6 +21,7 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>(
     age: { type: Number },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, unique: true },
+    admin: { type: Boolean, required: true, default: false },
   },
   {
     timestamps: true,

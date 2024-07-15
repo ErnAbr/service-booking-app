@@ -13,7 +13,7 @@ axios.defaults.withCredentials = true;
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
-const handleError = (error: any) => {
+const handleError = (error: Error) => {
   console.error("API call failed. ", error);
   throw error;
 };

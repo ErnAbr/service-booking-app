@@ -56,6 +56,8 @@ export const Login = () => {
     }
   }, []);
 
+  console.log(user);
+
   return (
     <div className={styles.container}>
       <div className={styles.formBox}>
