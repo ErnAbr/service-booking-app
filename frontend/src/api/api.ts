@@ -29,7 +29,8 @@ const Categories = {
 };
 
 const Businesses = {
-  getCompanies: () => requests.get<IBusiness[]>("businesses"),
+  getBusinesses: () => requests.get<IBusiness[]>("businesses"),
+  getBusinessById: (id: string) => requests.get<IBusiness>(`businesses/${id}`),
 };
 
 const User = {

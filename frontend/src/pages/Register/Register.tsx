@@ -71,8 +71,8 @@ export const Register = () => {
       const response = await api.User.register(submissionData);
       toast.success(response.message);
       navigate(routes.LOGIN);
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || "Registration failed");
+    } catch {
+      toast.error("Registration failed");
     }
   };
 

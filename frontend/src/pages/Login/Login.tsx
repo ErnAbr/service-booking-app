@@ -44,8 +44,8 @@ export const Login = () => {
       setUser(response.user.userName);
       toast.success(response.message);
       navigate(routes.HOME);
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || "Login failed");
+    } catch {
+      toast.error("Login failed");
     }
   };
 

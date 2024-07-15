@@ -11,7 +11,7 @@ interface StoreState {
   user: string | null;
   setUser: (user: string) => void;
   logOutUser: (setMenuOpen: (open: boolean) => void, navigate: (path: string) => void) => void;
-  initializeUser: () => void;
+  initializeUser: () => Promise<void>;
   categories: ICategory[] | null;
   setCategories: (categories: ICategory[]) => void;
   businesses: IBusiness[] | null;
@@ -34,11 +34,11 @@ export const useStore = create<StoreState>((set) => ({
       await api.User.logout();
       toast.success("Successfully logged out");
       localStorage.removeItem(USER_STORAGE_KEY);
-    } catch (error) {
+    } catch {
       toast.error("Logout failed");
     }
   },
-  initializeUser: () => {
+  initializeUser: async () => {
     const storedUser = localStorage.getItem(USER_STORAGE_KEY);
     if (storedUser) {
       set({ user: storedUser });

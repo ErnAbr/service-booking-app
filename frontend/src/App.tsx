@@ -12,17 +12,16 @@ function App() {
   const setBusinesses = useStore((state) => state.setBusinesses);
   const setLoading = useStore((state) => state.setLoading);
   const isLoading = useStore((state) => state.isLoading);
+  const user = useStore((state) => state.user);
 
   useEffect(() => {
     const initializeApp = async () => {
       setLoading(true);
       try {
-        initializeUser();
-        const [categories, businesses] = await Promise.all([
-          api.Categories.getCategories(),
-          api.Businesses.getCompanies(),
-        ]);
+        await initializeUser();
+        const categories = await api.Categories.getCategories();
         setCategories(categories);
+        const businesses = await api.Businesses.getBusinesses();
         setBusinesses(businesses);
       } catch (error) {
         console.error("Failed to initialize app", error);
@@ -34,7 +33,7 @@ function App() {
     initializeApp();
   }, [initializeUser, setCategories, setBusinesses, setLoading]);
 
-  if (isLoading) {
+  if (isLoading || !user) {
     return <div>Initiating App...</div>;
   }
 
