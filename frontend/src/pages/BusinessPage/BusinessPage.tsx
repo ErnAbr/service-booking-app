@@ -1,9 +1,7 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { useStore } from "src/context/store";
-import api from "src/api/api";
-import { IBusiness } from "src/types/business";
 import styles from "./BusinessPage.module.scss";
+import { useEffect } from "react";
 
 export const BusinessPage = () => {
   const { id } = useParams<{ id: string }>();

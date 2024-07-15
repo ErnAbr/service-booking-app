@@ -16,7 +16,6 @@ function App() {
 
   useEffect(() => {
     const initializeApp = async () => {
-      setLoading(true);
       try {
         await initializeUser();
         const categories = await api.Categories.getCategories();
@@ -33,7 +32,10 @@ function App() {
     initializeApp();
   }, [initializeUser, setCategories, setBusinesses, setLoading]);
 
-  if (isLoading || !user) {
+  console.log("loading", isLoading);
+  console.log("user", user);
+
+  if (isLoading && !user) {
     return <div>Initiating App...</div>;
   }
 

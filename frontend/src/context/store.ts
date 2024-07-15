@@ -52,7 +52,7 @@ export const useStore = create<StoreState>((set) => ({
   setBusinesses: (businesses) => {
     set({ businesses });
   },
-  isLoading: false,
+  isLoading: true,
   setLoading: (loading) => {
     set({ isLoading: loading });
   },
