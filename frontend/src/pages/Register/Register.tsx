@@ -12,6 +12,8 @@ import { addYears, differenceInYears } from "date-fns";
 import { toast } from "react-toastify";
 import api from "src/api/api";
 import { useEffect } from "react";
+import { handleApiError } from "src/utils/handleApiErrors";
+import { ApiError } from "src/types/error";
 
 const schema = yup
   .object({
@@ -71,8 +73,8 @@ export const Register = () => {
       const response = await api.User.register(submissionData);
       toast.success(response.message);
       navigate(routes.LOGIN);
-    } catch {
-      toast.error("Registration failed");
+    } catch (error) {
+      handleApiError(error as ApiError);
     }
   };
 

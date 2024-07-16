@@ -8,7 +8,7 @@ export const login: RequestHandler = async (req, res) => {
   if (!user || !(await user.isCorrectPassword(password))) {
     return res.status(401).json({ message: "Incorrect User Name or Password" });
   }
-  const token = generateToken({ id: user._id, admin: user.admin });
+  const token = generateToken({ id: user._id, admin: user.admin, email: user.email });
 
   res.cookie("token", token, {
     httpOnly: true,

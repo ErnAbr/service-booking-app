@@ -11,6 +11,8 @@ import { InputField } from "../../components/InputField/InputField";
 import api from "src/api/api";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import { handleApiError } from "src/utils/handleApiErrors";
+import { ApiError } from "src/types/error";
 
 const schema = yup
   .object({
@@ -44,8 +46,8 @@ export const Login = () => {
       setUser(response.user.userName);
       toast.success(response.message);
       navigate(routes.HOME);
-    } catch {
-      toast.error("Login failed");
+    } catch (error) {
+      handleApiError(error as ApiError);
     }
   };
 

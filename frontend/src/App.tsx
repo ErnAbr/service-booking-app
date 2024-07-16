@@ -32,9 +32,6 @@ function App() {
     initializeApp();
   }, [initializeUser, setCategories, setBusinesses, setLoading]);
 
-  console.log("loading", isLoading);
-  console.log("user", user);
-
   if (isLoading && !user) {
     return <div>Initiating App...</div>;
   }
