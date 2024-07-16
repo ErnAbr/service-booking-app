@@ -29,7 +29,7 @@ export const updateUser: RequestHandler = async (req, res) => {
       sameSite: "strict",
     });
 
-    return res.status(200).json({ user, message: "User updated successfully", token });
+    return res.status(200).json({ user, message: "User updated successfully" });
   } catch (error) {
     console.error("Error updating user:", error);
     return res.status(500).json({ message: "Error updating user." });

@@ -23,25 +23,28 @@ export const Category = ({ iconSize }: CategoryProps) => {
   };
 
   return (
-    <div className={styles.categoryContainer}>
-      {categories?.map((category, index) => {
-        const IconComponent = iconMapping[category.imageUrl];
-        return (
-          <Button
-            key={index}
-            variant="square"
-            onClick={() => handleCategoryClick(category.categoryName)}
-            isSelected={selectedCategory === category.categoryName.toLowerCase()}
-          >
-            <div>
-              <IconContext.Provider value={{ color: category.backgroundColor, size: iconSize }}>
-                <IconComponent />
-              </IconContext.Provider>
-              {category.categoryName}
-            </div>
-          </Button>
-        );
-      })}
-    </div>
+    <>
+      <h3 className={styles.categoryHeading}>Categories</h3>
+      <div className={styles.categoryContainer}>
+        {categories?.map((category, index) => {
+          const IconComponent = iconMapping[category.imageUrl];
+          return (
+            <Button
+              key={index}
+              variant="square"
+              onClick={() => handleCategoryClick(category.categoryName)}
+              isSelected={selectedCategory === category.categoryName.toLowerCase()}
+            >
+              <div className={styles.buttonContent}>
+                <IconContext.Provider value={{ color: category.backgroundColor, size: iconSize }}>
+                  <IconComponent />
+                </IconContext.Provider>
+                {category.categoryName}
+              </div>
+            </Button>
+          );
+        })}
+      </div>
+    </>
   );
 };

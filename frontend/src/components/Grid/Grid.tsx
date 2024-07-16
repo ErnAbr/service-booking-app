@@ -16,9 +16,11 @@ export const Grid = ({
   gridClass,
 }: GridProps) => {
   return (
-    <div className={gridContainerClass}>
+    <>
       <h3 className={headingClass}>{heading}</h3>
-      <div className={gridClass}>{children}</div>
-    </div>
+      <div className={gridContainerClass}>
+        <div className={gridClass}>{children}</div>
+      </div>
+    </>
   );
 };

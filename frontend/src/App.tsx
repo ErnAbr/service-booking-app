@@ -3,8 +3,10 @@ import "./styles/Default.module.scss";
 import { Routes } from "./navigation/routes/router";
 import { useStore } from "./context/store";
 import api from "./api/api";
+import styles from "./styles/App.module.scss";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CircularProgress, Typography } from "@mui/material";
 
 function App() {
   const initializeUser = useStore((state) => state.initializeUser);
@@ -33,7 +35,14 @@ function App() {
   }, [initializeUser, setCategories, setBusinesses, setLoading]);
 
   if (isLoading && !user) {
-    return <div>Initiating App...</div>;
+    return (
+      <div className={styles.loadingContainer}>
+        <CircularProgress color="secondary" size={200} />
+        <Typography variant="h4" mt={1}>
+          Initiating App...
+        </Typography>
+      </div>
+    );
   }
 
   return (
