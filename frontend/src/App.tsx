@@ -1,55 +1,21 @@
-import { useEffect } from "react";
-import "./styles/Default.module.scss";
-import { Routes } from "./navigation/routes/router";
-import { useStore } from "./context/store";
-import api from "./api/api";
-import styles from "./styles/App.module.scss";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { CircularProgress, Typography } from "@mui/material";
+import "./styles/Default.module.scss";
+
+import { Routes } from "./navigation/routes/router";
+import { AppInitializer } from "./utils/AppInitializer";
+
+const queryClient = new QueryClient();
 
 function App() {
-  const initializeUser = useStore((state) => state.initializeUser);
-  const setCategories = useStore((state) => state.setCategories);
-  const setBusinesses = useStore((state) => state.setBusinesses);
-  const setLoading = useStore((state) => state.setLoading);
-  const isLoading = useStore((state) => state.isLoading);
-  const user = useStore((state) => state.user);
-
-  useEffect(() => {
-    const initializeApp = async () => {
-      try {
-        await initializeUser();
-        const categories = await api.Categories.getCategories();
-        setCategories(categories);
-        const businesses = await api.Businesses.getBusinesses();
-        setBusinesses(businesses);
-      } catch (error) {
-        console.error("Failed to initialize app", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    initializeApp();
-  }, [initializeUser, setCategories, setBusinesses, setLoading]);
-
-  if (isLoading && !user) {
-    return (
-      <div className={styles.loadingContainer}>
-        <CircularProgress color="secondary" size={200} />
-        <Typography variant="h4" mt={1}>
-          Initiating App...
-        </Typography>
-      </div>
-    );
-  }
-
   return (
-    <>
-      <Routes />
-      <ToastContainer closeOnClick position="bottom-right" theme="colored" />
-    </>
+    <QueryClientProvider client={queryClient}>
+      <AppInitializer>
+        <Routes />
+        <ToastContainer closeOnClick position="bottom-right" theme="colored" />
+      </AppInitializer>
+    </QueryClientProvider>
   );
 }
 
