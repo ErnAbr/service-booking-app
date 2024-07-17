@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card } from "../Card/Card";
-import styles from "./BusinessSimpleCard.module.scss";
+import styles from "./BusinessPageSimpleCard.module.scss";
 
 interface BusinessSimpleCardProps {
   id: string;
@@ -10,7 +10,7 @@ interface BusinessSimpleCardProps {
   address: string;
 }
 
-export const BusinessSimpleCard = ({
+export const BusinessPageSimpleCard = ({
   photoUrl,
   companyName,
   representative,

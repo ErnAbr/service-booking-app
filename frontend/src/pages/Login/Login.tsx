@@ -10,7 +10,6 @@ import { useStore } from "../../context/store";
 import { InputField } from "../../components/InputField/InputField";
 import api from "src/api/api";
 import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
 import { handleApiError } from "src/utils/handleApiErrors";
 import { ApiError } from "src/types/error";
 

@@ -18,19 +18,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 25px;
   justify-content: center;
   font-size: larger;
   font-weight: bolder;
+  gap: 10px;
   & button {
     all: unset;
   }
-}
-
-.representative,
-.availability {
-  display: flex;
-  align-items: center;
 }
 
 .representative {
@@ -43,7 +37,7 @@
 
 .icon {
   margin-right: 5px;
-  font-size: 18px;
+  font-size: 1.5rem;
   color: #6c63ff;
   margin-right: 15px;
 }
@@ -51,10 +45,9 @@
 .shareIcon {
   background-color: #6c63ff;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 7px;
   color: white;
   cursor: pointer;
-  align-self: center;
 }
 
 .bottomSection {
@@ -64,9 +57,7 @@
 }
 
 .bottomLeft {
-  max-width: 60%;
-  word-wrap: break-word;
-  word-break: break-word;
+  flex: 3;
   text-align: justify;
   & p {
     color: black;
@@ -77,12 +68,26 @@
   margin-bottom: 15px;
 }
 
+.bottomRight {
+  flex: 1.8;
+}
+
 .similarBusiness {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  & p {
-    margin-top: 10px;
-    color: black;
+  width: 100%;
+}
+
+.bookAppointmentButton {
+  width: 100% !important;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  .bookingIcon {
+    margin-right: 8px;
   }
 }

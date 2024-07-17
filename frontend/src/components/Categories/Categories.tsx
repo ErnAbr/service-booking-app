@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "../Button/Button";
-import styles from "./Category.module.scss";
+import styles from "./Categories.module.scss";
 import { useNavigate } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { useCategories } from "src/api/queryCategories";
@@ -10,7 +10,7 @@ interface CategoryProps {
   iconSize: string;
 }
 
-export const Category = ({ iconSize }: CategoryProps) => {
+export const Categories = ({ iconSize }: CategoryProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const { data: categories } = useCategories();
   const navigate = useNavigate();

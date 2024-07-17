@@ -6,12 +6,15 @@ interface ButtonProps {
   variant: "primary" | "search" | "square";
   isSelected?: boolean;
   type?: "button" | "submit" | "reset";
+  className?: string;
 }
 
-export const Button = ({ children, variant, onClick, isSelected }: ButtonProps) => {
+export const Button = ({ children, variant, onClick, isSelected, className }: ButtonProps) => {
   return (
     <button
-      className={`${styles.button} ${styles[variant]} ${isSelected ? styles.selected : ""}`}
+      className={`${styles.button} ${styles[variant]} ${
+        isSelected ? styles.selected : ""
+      } ${className}`}
       onClick={onClick}
     >
       {children}

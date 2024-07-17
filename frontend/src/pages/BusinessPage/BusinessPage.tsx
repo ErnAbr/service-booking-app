@@ -3,10 +3,12 @@ import { useQueryClient } from "@tanstack/react-query";
 import styles from "./BusinessPage.module.scss";
 import { BUSINESS_QUERY_KEY } from "src/api/queryKeys";
 import { IBusiness } from "src/types/business";
-import { BusinessPageSingleCard } from "src/components/BusinessPageSingleCard/BusinessPageSingleCard";
+import { BusinessPageMainCard } from "src/components/BusinessPageMainCard/BusinessPageMainCard";
 import { FaUser, FaClock } from "react-icons/fa";
 import { IoShareOutline } from "react-icons/io5";
-import { BusinessSimpleCard } from "src/components/BusinessSimpleCard/BusinessSimpleCard";
+import { BusinessPageSimpleCard } from "src/components/BusinessPageSimpleCard/BusinessPageSimpleCard";
+import { Button } from "src/components/Button/Button";
+import { SlNotebook } from "react-icons/sl";
 
 export const BusinessPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -15,25 +17,27 @@ export const BusinessPage = () => {
   const businesses = queryClient.getQueryData<IBusiness[]>([BUSINESS_QUERY_KEY]);
 
   const business = businesses?.find((b) => b.id === id);
-  const similarBusiness = businesses?.find((b) => b.id !== id && b.category === business?.category);
+  const similarBusinesses = businesses?.filter(
+    (b) => b.id !== id && b.category === business?.category,
+  );
 
   if (!business) return <div>Business Not Found</div>;
 
   return (
     <div className={styles.container}>
       <div className={styles.topSection}>
-        <BusinessPageSingleCard {...business} />
+        <BusinessPageMainCard {...business} />
         <div className={styles.representativeInfo}>
           <button>
             <IoShareOutline size={"2.5rem"} className={styles.shareIcon} />
           </button>
 
           <div className={styles.representative}>
-            <FaUser size={"1.5em"} className={styles.icon} />
+            <FaUser className={styles.icon} />
             <span>{business.representative}</span>
           </div>
           <div className={styles.availability}>
-            <FaClock size={"1.5em"} className={styles.icon} />
+            <FaClock className={styles.icon} />
             <span>Available 8:00 AM to 10:PM</span>
           </div>
         </div>
@@ -50,17 +54,23 @@ export const BusinessPage = () => {
             mollitia totam odio quis iusto eos id.
           </p>
         </div>
-        <div>
+        <div className={styles.bottomRight}>
+          <Button variant="primary" className={styles.bookAppointmentButton}>
+            <SlNotebook className={styles.bookingIcon} /> Book Appointment
+          </Button>
           <h2>Similar Business</h2>
           <div className={styles.similarBusiness}>
-            {similarBusiness ? (
-              <BusinessSimpleCard
-                photoUrl={similarBusiness.photoUrl}
-                companyName={similarBusiness.companyName}
-                representative={similarBusiness.representative}
-                address={similarBusiness.address}
-                id={similarBusiness.id}
-              />
+            {similarBusinesses && similarBusinesses.length > 0 ? (
+              similarBusinesses.map((sb) => (
+                <BusinessPageSimpleCard
+                  key={sb.id}
+                  photoUrl={sb.photoUrl}
+                  companyName={sb.companyName}
+                  representative={sb.representative}
+                  address={sb.address}
+                  id={sb.id}
+                />
+              ))
             ) : (
               <p>No similar business found.</p>
             )}

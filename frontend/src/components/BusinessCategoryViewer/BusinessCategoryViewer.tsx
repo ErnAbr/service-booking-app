@@ -1,17 +1,17 @@
-import { Category } from "../Category/Category";
+import { Categories } from "../Categories/Categories";
 import { BusinessCardGrid } from "../BusinessCardGrid/BusinessCardGrid";
 import Pagination from "@mui/material/Pagination";
-import styles from "./SearchCategory.module.scss";
+import styles from "./BusinessCategoryViewer.module.scss";
 
 interface SearchCategoryProps {
   category: string;
 }
 
-export const SearchCategory = ({ category }: SearchCategoryProps) => {
+export const BusinessCategoryViewer = ({ category }: SearchCategoryProps) => {
   return (
     <div className={styles.searchCategoryContainer}>
       <div className={styles.categoryContainer}>
-        <Category iconSize="2em" />
+        <Categories iconSize="2em" />
       </div>
       <div>
         <BusinessCardGrid category={category} />
