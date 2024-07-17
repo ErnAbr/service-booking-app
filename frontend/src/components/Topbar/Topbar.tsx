@@ -50,6 +50,8 @@ export function Topbar() {
             <Pill text={user.substring(0, 1).toUpperCase()} onClick={handlePillClick} />
             {menuOpen && (
               <div className={styles.menu}>
+                <button onClick={() => console.log("My Account")}>My Account</button>
+                <button onClick={() => console.log("My Bookings")}>My Bookings</button>
                 <button onClick={() => logOutUser(setMenuOpen, navigate)}>Logout</button>
               </div>
             )}

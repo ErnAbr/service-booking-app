@@ -1,4 +1,4 @@
-import styles from "./ServiceCategoryCard.module.scss";
+import styles from "./BusinessCard.module.scss";
 import { FaHeart } from "react-icons/fa";
 import { Button } from "../Button/Button";
 import { Card } from "../Card/Card";
@@ -16,7 +16,7 @@ interface ServiceCategoryCardProps {
   toggleFavorite: () => void;
 }
 
-export const ServiceCategoryCard = ({
+export const BusinessCard = ({
   id,
   photoUrl,
   category,

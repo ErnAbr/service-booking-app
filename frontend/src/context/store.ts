@@ -1,7 +1,5 @@
 import { create } from "zustand";
 import { routes } from "../navigation/routes/routes";
-import { ICategory } from "src/types/category";
-import { IBusiness } from "src/types/business";
 import { toast } from "react-toastify";
 import api from "src/api/api";
 
@@ -12,10 +10,6 @@ interface StoreState {
   setUser: (user: string) => void;
   logOutUser: (setMenuOpen: (open: boolean) => void, navigate: (path: string) => void) => void;
   initializeUser: () => Promise<void>;
-  categories: ICategory[] | null;
-  setCategories: (categories: ICategory[]) => void;
-  businesses: IBusiness[] | null;
-  setBusinesses: (businesses: IBusiness[]) => void;
   isLoading: boolean;
   setLoading: (loading: boolean) => void;
 }
@@ -43,14 +37,6 @@ export const useStore = create<StoreState>((set) => ({
     if (storedUser) {
       set({ user: storedUser });
     }
-  },
-  categories: null,
-  setCategories: (categories) => {
-    set({ categories });
-  },
-  businesses: null,
-  setBusinesses: (businesses) => {
-    set({ businesses });
   },
   isLoading: true,
   setLoading: (loading) => {

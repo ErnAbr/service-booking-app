@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 interface CardProps {
   image: string;
   category: string;
   title: string;
-  subtitle: string;
+  subtitle: string | ReactNode;
   description: string;
   children?: ReactNode;
   cardBody?: string;
@@ -17,7 +17,7 @@ interface CardProps {
   bottomClass?: string;
 }
 
-export const Card = ({
+export const Card: React.FC<CardProps> = ({
   image,
   category,
   title,
@@ -32,7 +32,7 @@ export const Card = ({
   subtitleClass,
   descriptionClass,
   bottomClass,
-}: CardProps) => {
+}) => {
   return (
     <div className={cardClass}>
       <img className={imgClass} src={image} alt="card-image" />

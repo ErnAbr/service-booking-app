@@ -3,7 +3,7 @@ import { Button } from "../Button/Button";
 import styles from "./Category.module.scss";
 import { useNavigate } from "react-router-dom";
 import { IconContext } from "react-icons";
-import { useStore } from "src/context/store";
+import { useCategories } from "src/api/queryCategories";
 import { iconMapping } from "src/constants/iconMapping";
 
 interface CategoryProps {
@@ -12,7 +12,7 @@ interface CategoryProps {
 
 export const Category = ({ iconSize }: CategoryProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const categories = useStore((state) => state.categories);
+  const { data: categories } = useCategories();
   const navigate = useNavigate();
 
   const handleCategoryClick = (categoryName: string) => {

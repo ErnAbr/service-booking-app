@@ -1,10 +1,12 @@
 .card {
   width: 100%;
-  max-width: 250px;
+  max-width: 275px;
   border: 1px solid rgba(0, 0, 0, 0.116);
   border-radius: 15px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
   &:hover {
     transform: scale(1.05);
   }
@@ -24,11 +26,17 @@ p {
 .cardBody {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
   margin-left: 5px;
   margin-right: 5px;
   gap: 8px;
   padding: 5px;
   padding-bottom: 15px;
+  position: relative;
+  & div {
+    margin-top: 2px;
+  }
   & h4 {
     margin-top: 10px;
   }
@@ -37,6 +45,8 @@ p {
 .cardBottom {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
 
 .subtitle {
@@ -48,10 +58,10 @@ p {
 .category {
   font-size: smaller;
   font-weight: 600;
-  display: inline;
+  display: inline-block;
   color: #7f58d3;
   background-color: #e7d5fd;
-  padding: 7px;
+  padding: 10px;
   border-radius: 25px;
 }
 
@@ -59,7 +69,7 @@ p {
 .favCard {
   cursor: pointer;
   margin-top: 7px;
-  align-self: center;
+  padding-top: 3px;
 }
 
 .heartIcon {
@@ -71,8 +81,7 @@ p {
 }
 
 .cardBody button {
-  align-self: flex-start;
   border-radius: 10px !important;
-  width: 50%;
-  margin-top: 5px;
+  width: auto;
+  margin-top: auto;
 }

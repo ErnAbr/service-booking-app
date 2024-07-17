@@ -7,4 +7,5 @@ export interface IBusiness {
   representative: string;
   email: string;
   photoUrl: string;
+  availability?: string;
 }
