@@ -6,6 +6,7 @@ export const getBookingsByDate: RequestHandler = async (req, res) => {
     const { businessId, date } = req.params;
     const startDate = new Date(date);
     const endDate = new Date(date);
+    const bookedTimes: string[] = [];
     endDate.setDate(endDate.getDate() + 1);
 
     const bookings = await Booking.find({
@@ -16,11 +17,18 @@ export const getBookingsByDate: RequestHandler = async (req, res) => {
       },
     });
 
-    if (bookings.length === 0) {
-      return res.status(404).send({ message: "No Bookings Found" });
-    }
+    bookings.forEach((booking) => {
+      const orderDateTime = new Date(booking.orderDateTime);
+      const localTime = orderDateTime.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: "UTC",
+      });
+      bookedTimes.push(localTime);
+    });
 
-    return res.status(200).send(bookings);
+    return res.status(200).send(bookedTimes);
   } catch (error) {
     console.error(error);
     return res.status(500).send({ message: "Internal Server Error" });

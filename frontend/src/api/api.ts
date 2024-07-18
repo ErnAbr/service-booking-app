@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { IBooking, IBookingResponse } from "src/types/booking";
 import { IBusiness } from "src/types/business";
 import { ICategory } from "src/types/category";
 import {
@@ -28,6 +29,8 @@ const Categories = {
 const Businesses = {
   getBusinesses: () => requests.get<IBusiness[]>("businesses"),
   getBusinessById: (id: string) => requests.get<IBusiness>(`businesses/${id}`),
+  getBusinessBookingsByDate: (id: string, date: string) =>
+    requests.get<string[]>(`businesses/${id}/bookings/date/${date}`),
 };
 
 const User = {
@@ -37,10 +40,15 @@ const User = {
   logout: () => requests.post("auth/logout", {}),
 };
 
+const Bookings = {
+  makeBooking: (body: IBooking) => requests.post<IBookingResponse>("bookings", body),
+};
+
 const api = {
   Categories,
   Businesses,
   User,
+  Bookings,
 };
 
 export default api;

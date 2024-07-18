@@ -42,7 +42,7 @@ export const Login = () => {
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
     try {
       const response = await api.User.login(data);
-      setUser(response.user.userName);
+      setUser(response.user);
       toast.success(response.message);
       navigate(routes.HOME);
     } catch (error) {

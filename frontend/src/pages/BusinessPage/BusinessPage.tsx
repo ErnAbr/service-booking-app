@@ -9,8 +9,12 @@ import { IoShareOutline } from "react-icons/io5";
 import { CardBusinessPageSimple } from "src/components/CardBusinessPageSimple/CardBusinessPageSimple";
 import { Button } from "src/components/Button/Button";
 import { SlNotebook } from "react-icons/sl";
+import { useState } from "react";
+import { Modal } from "src/components/modal/modal";
+import { DateAndTimePicker } from "src/components/DateAndTimePicker/DateAndTimePicker";
 
 export const BusinessPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams<{ id: string }>();
   const queryClient = useQueryClient();
 
@@ -55,7 +59,11 @@ export const BusinessPage = () => {
           </p>
         </div>
         <div className={styles.bottomRight}>
-          <Button variant="primary" className={styles.bookAppointmentButton}>
+          <Button
+            onClick={() => setIsModalOpen(true)}
+            variant="primary"
+            className={styles.bookAppointmentButton}
+          >
             <SlNotebook className={styles.bookingIcon} /> Book Appointment
           </Button>
           <h2>Similar Business</h2>
@@ -77,6 +85,13 @@ export const BusinessPage = () => {
           </div>
         </div>
       </div>
+      {isModalOpen && id && (
+        <>
+          <Modal closeModal={() => setIsModalOpen(false)}>
+            <DateAndTimePicker setIsModalOpen={() => setIsModalOpen(false)} id={id} />
+          </Modal>
+        </>
+      )}
     </div>
   );
 };

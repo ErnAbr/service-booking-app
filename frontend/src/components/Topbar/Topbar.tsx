@@ -47,7 +47,7 @@ export function Topbar() {
       <div className={styles.authSection}>
         {user ? (
           <>
-            <Pill text={user.substring(0, 1).toUpperCase()} onClick={handlePillClick} />
+            <Pill text={user.userName.substring(0, 1).toUpperCase()} onClick={handlePillClick} />
             {menuOpen && (
               <div className={styles.menu}>
                 <button onClick={() => console.log("My Account")}>My Account</button>

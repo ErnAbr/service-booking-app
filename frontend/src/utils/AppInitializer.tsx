@@ -11,7 +11,6 @@ interface AppInitializerProps {
 
 export const AppInitializer = ({ children }: AppInitializerProps) => {
   const initializeUser = useStore((state) => state.initializeUser);
-  const user = useStore((state) => state.user);
   const isUserLoading = useStore((state) => state.isLoading);
   const setIsUserLoading = useStore((state) => state.setLoading);
 

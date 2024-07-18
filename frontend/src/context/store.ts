@@ -2,12 +2,13 @@ import { create } from "zustand";
 import { routes } from "../navigation/routes/routes";
 import { toast } from "react-toastify";
 import api from "src/api/api";
+import { IUser } from "src/types/user";
 
 const USER_STORAGE_KEY = import.meta.env.VITE_USER_STORAGE_KEY;
 
 interface StoreState {
-  user: string | null;
-  setUser: (user: string) => void;
+  user: IUser | null;
+  setUser: (user: IUser) => void;
   logOutUser: (setMenuOpen: (open: boolean) => void, navigate: (path: string) => void) => void;
   initializeUser: () => Promise<void>;
   isLoading: boolean;
@@ -18,7 +19,7 @@ export const useStore = create<StoreState>((set) => ({
   user: null,
   setUser: (user) => {
     set({ user });
-    localStorage.setItem(USER_STORAGE_KEY, user);
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
   },
   logOutUser: async (setMenuOpen, navigate) => {
     try {
@@ -35,7 +36,7 @@ export const useStore = create<StoreState>((set) => ({
   initializeUser: async () => {
     const storedUser = localStorage.getItem(USER_STORAGE_KEY);
     if (storedUser) {
-      set({ user: storedUser });
+      set({ user: JSON.parse(storedUser) });
     }
   },
   isLoading: true,

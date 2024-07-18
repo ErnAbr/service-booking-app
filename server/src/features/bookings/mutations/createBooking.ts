@@ -17,11 +17,13 @@ export const createBooking: RequestHandler = async (req, res) => {
 
     const existingBooking = await Booking.findOne({ companyId, orderDateTime });
     if (existingBooking) {
-      return res.status(400).send({ message: "Booking at this time is not possible, please choose another time" });
+      return res
+        .status(400)
+        .send({ message: "Booking at this time is not possible, please choose another time" });
     }
 
-    const savedBooking = await new Booking(req.body).save();
-    return res.status(201).send(savedBooking);
+    await new Booking(req.body).save();
+    return res.status(201).send({ message: "Booking Successful" });
   } catch (error) {
     console.error(error);
     return res.status(500).send({ message: "Internal Server Error" });

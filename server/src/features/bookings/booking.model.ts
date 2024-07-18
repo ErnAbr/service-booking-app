@@ -30,8 +30,17 @@ const BookingSchema = new Schema<IBooking>({
   status: {
     type: Boolean,
     required: true,
-    default: false,
+    default: true,
   },
+});
+
+BookingSchema.pre("save", function (next) {
+  const booking = this as IBooking;
+  const localOrderDateTime = new Date(
+    booking.orderDateTime.getTime() - booking.orderDateTime.getTimezoneOffset() * 60000,
+  );
+  booking.orderDateTime = localOrderDateTime;
+  next();
 });
 
 BookingSchema.set("toJSON", {
