@@ -3,10 +3,10 @@ import { useQueryClient } from "@tanstack/react-query";
 import styles from "./BusinessPage.module.scss";
 import { BUSINESS_QUERY_KEY } from "src/api/queryKeys";
 import { IBusiness } from "src/types/business";
-import { BusinessPageMainCard } from "src/components/BusinessPageMainCard/BusinessPageMainCard";
+import { CardBusinessMainPage } from "src/components/CardBusinessMainPage/CardBusinessMainPage";
 import { FaUser, FaClock } from "react-icons/fa";
 import { IoShareOutline } from "react-icons/io5";
-import { BusinessPageSimpleCard } from "src/components/BusinessPageSimpleCard/BusinessPageSimpleCard";
+import { CardBusinessPageSimple } from "src/components/CardBusinessPageSimple/CardBusinessPageSimple";
 import { Button } from "src/components/Button/Button";
 import { SlNotebook } from "react-icons/sl";
 
@@ -26,7 +26,7 @@ export const BusinessPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.topSection}>
-        <BusinessPageMainCard {...business} />
+        <CardBusinessMainPage {...business} />
         <div className={styles.representativeInfo}>
           <button>
             <IoShareOutline size={"2.5rem"} className={styles.shareIcon} />
@@ -62,7 +62,7 @@ export const BusinessPage = () => {
           <div className={styles.similarBusiness}>
             {similarBusinesses && similarBusinesses.length > 0 ? (
               similarBusinesses.map((sb) => (
-                <BusinessPageSimpleCard
+                <CardBusinessPageSimple
                   key={sb.id}
                   photoUrl={sb.photoUrl}
                   companyName={sb.companyName}

@@ -1,11 +1,11 @@
-import styles from "./BusinessPageMainCard.module.scss";
+import styles from "./CardBusinessMainPage.module.scss";
 import { Card } from "../Card/Card";
 import { IBusiness } from "src/types/business";
 import { FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 
 type ServicePageCardProps = IBusiness;
 
-export const BusinessPageMainCard = ({
+export const CardBusinessMainPage = ({
   photoUrl,
   category,
   companyName,

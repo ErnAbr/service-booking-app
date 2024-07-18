@@ -1,5 +1,5 @@
 import { Search } from "../components/Search/Search";
-import { BusinessCategoryViewer } from "../components/BusinessCategoryViewer/BusinessCategoryViewer";
+import { BusinessAndCategoryViewer } from "../components/BusinessAndCategoryViewer/BusinessAndCategoryViewer";
 import { useLocation } from "react-router-dom";
 
 export const Home = () => {
@@ -10,7 +10,7 @@ export const Home = () => {
   return (
     <>
       <Search />
-      <BusinessCategoryViewer category={category} />
+      <BusinessAndCategoryViewer category={category} />
     </>
   );
 };
