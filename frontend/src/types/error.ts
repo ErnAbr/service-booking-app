@@ -4,4 +4,5 @@ export interface ApiError {
       message?: string;
     };
   };
+  handled?: boolean;
 }

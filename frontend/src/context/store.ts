@@ -13,6 +13,7 @@ interface StoreState {
   initializeUser: () => Promise<void>;
   isLoading: boolean;
   setLoading: (loading: boolean) => void;
+  sessionLogOutUser: () => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
@@ -26,12 +27,18 @@ export const useStore = create<StoreState>((set) => ({
       navigate(routes.HOME);
       setMenuOpen(false);
       set({ user: null });
+      localStorage.removeItem(USER_STORAGE_KEY);
       await api.User.logout();
       toast.success("Successfully logged out");
-      localStorage.removeItem(USER_STORAGE_KEY);
     } catch {
       toast.error("Logout failed");
     }
+  },
+  sessionLogOutUser: () => {
+    set({ user: null });
+    toast.error("Session expired. Please log in again.");
+    localStorage.removeItem(USER_STORAGE_KEY);
+    window.location.replace(routes.LOGIN);
   },
   initializeUser: async () => {
     const storedUser = localStorage.getItem(USER_STORAGE_KEY);

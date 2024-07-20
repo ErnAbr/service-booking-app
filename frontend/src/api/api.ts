@@ -1,9 +1,9 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
+import { useStore } from "src/context/store";
 import { IBooking, IBookingResponse } from "src/types/booking";
 import { IBusiness } from "src/types/business";
 import { ICategory } from "src/types/category";
 import {
-  IUser,
   IUserLogin,
   IUserLoginResponse,
   IUserRegister,
@@ -11,8 +11,24 @@ import {
   IUserUpdate,
 } from "src/types/user";
 
+interface CustomAxiosError extends AxiosError {
+  handled?: boolean;
+}
+
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 axios.defaults.withCredentials = true;
+
+axios.interceptors.response.use(
+  (response) => response,
+  (error: CustomAxiosError) => {
+    if (error.response?.status === 401) {
+      const store = useStore.getState();
+      store.sessionLogOutUser();
+      error.handled = true;
+    }
+    return Promise.reject(error);
+  },
+);
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
