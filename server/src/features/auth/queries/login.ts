@@ -6,7 +6,7 @@ export const login: RequestHandler = async (req, res) => {
   const { userName, password } = req.body;
   const user = await User.findOne({ userName });
   if (!user || !(await user.isCorrectPassword(password))) {
-    return res.status(401).json({ message: "Incorrect User Name or Password" });
+    return res.status(400).json({ message: "Incorrect User Name or Password" });
   }
   const token = generateToken({ id: user._id, admin: user.admin, email: user.email });
 
