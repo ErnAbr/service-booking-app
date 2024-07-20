@@ -36,7 +36,6 @@ export const useStore = create<StoreState>((set) => ({
   },
   sessionLogOutUser: () => {
     set({ user: null });
-    toast.error("Session expired. Please log in again.");
     localStorage.removeItem(USER_STORAGE_KEY);
     window.location.replace(routes.LOGIN);
   },

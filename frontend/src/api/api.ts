@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { toast } from "react-toastify";
 import { useStore } from "src/context/store";
 import { IBooking, IBookingResponse } from "src/types/booking";
 import { IBusiness } from "src/types/business";
@@ -15,6 +16,10 @@ interface CustomAxiosError extends AxiosError {
   handled?: boolean;
 }
 
+interface ErrorResponse {
+  message: string;
+}
+
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 axios.defaults.withCredentials = true;
 
@@ -22,8 +27,11 @@ axios.interceptors.response.use(
   (response) => response,
   (error: CustomAxiosError) => {
     if (error.response?.status === 401) {
+      const errorMessage =
+        (error.response?.data as ErrorResponse).message || "Session expired. Please log in again.";
       const store = useStore.getState();
       store.sessionLogOutUser();
+      toast.error(errorMessage);
       error.handled = true;
     }
     return Promise.reject(error);

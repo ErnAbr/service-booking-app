@@ -17,6 +17,6 @@ export const userProtected: RequestHandler = (req, res, next) => {
     req.currentUser = decoded;
     next();
   } catch {
-    return res.status(401).send({ message: "Unauthorized: Invalid token" });
+    return res.status(401).send({ message: "Unauthorized: Session Expired" });
   }
 };
