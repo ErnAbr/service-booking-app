@@ -36,7 +36,7 @@ axios.interceptors.response.use(
     }
     if (error.response?.status === 403) {
       const errorMessage = (error.response?.data as ErrorResponse).message;
-      window.location.replace(routes.HOME)
+      window.location.replace(routes.HOME);
       toast.error(errorMessage);
     }
     return Promise.reject(error);
