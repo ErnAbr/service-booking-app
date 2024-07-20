@@ -5,6 +5,6 @@ export interface IBooking {
   userName: string;
 }
 
-export interface IBookingResponse {
+export interface BookingResponse {
   message: string;
 }

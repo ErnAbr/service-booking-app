@@ -4,7 +4,7 @@ import styles from "./Categories.module.scss";
 import { useNavigate } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { useCategories } from "src/api/queryCategories";
-import { iconMapping } from "src/constants/iconMapping";
+import { iconMapping } from "src/utils/iconMapping";
 
 interface CategoryProps {
   iconSize: string;

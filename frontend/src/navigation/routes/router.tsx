@@ -10,6 +10,7 @@ import { routes } from "./routes";
 import { BusinessPage } from "src/pages/BusinessPage/BusinessPage";
 import { RequireAuth } from "../auth/RequireAuth";
 import { GuestOnlyAuth } from "../auth/GuestOnlyAuth";
+import { BookingPage } from "src/pages/BookingPage/BookingPage";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,10 @@ const router = createBrowserRouter([
       { path: routes.ABOUT_US, element: <AboutUs /> },
       {
         element: <RequireAuth />,
-        children: [{ path: routes.BUSINESS_PAGE, element: <BusinessPage /> }],
+        children: [
+          { path: routes.BUSINESS_PAGE, element: <BusinessPage /> },
+          { path: routes.BOOKING_PAGE, element: <BookingPage /> },
+        ],
       },
       {
         element: <GuestOnlyAuth />,

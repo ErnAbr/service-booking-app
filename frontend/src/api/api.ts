@@ -1,14 +1,15 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { useStore } from "src/context/store";
-import { IBooking, IBookingResponse } from "src/types/booking";
+import { routes } from "src/navigation/routes/routes";
+import { IBooking, BookingResponse } from "src/types/booking";
 import { IBusiness } from "src/types/business";
 import { ICategory } from "src/types/category";
 import {
   IUserLogin,
-  IUserLoginResponse,
+  UserLoginResponse,
   IUserRegister,
-  IUserRegisterResponse,
+  UserRegisterResponse,
   IUserUpdate,
 } from "src/types/user";
 
@@ -27,12 +28,16 @@ axios.interceptors.response.use(
   (response) => response,
   (error: CustomAxiosError) => {
     if (error.response?.status === 401) {
-      const errorMessage =
-        (error.response?.data as ErrorResponse).message || "Session expired. Please log in again.";
+      const errorMessage = (error.response?.data as ErrorResponse).message;
       const store = useStore.getState();
-      store.sessionLogOutUser();
+      store.invalidTokenLogout();
       toast.error(errorMessage);
       error.handled = true;
+    }
+    if (error.response?.status === 403) {
+      const errorMessage = (error.response?.data as ErrorResponse).message;
+      window.location.replace(routes.HOME)
+      toast.error(errorMessage);
     }
     return Promise.reject(error);
   },
@@ -58,14 +63,15 @@ const Businesses = {
 };
 
 const User = {
-  login: (body: IUserLogin) => requests.post<IUserLoginResponse>("auth/login", body),
-  register: (body: IUserRegister) => requests.post<IUserRegisterResponse>("auth/register", body),
-  update: (body: IUserUpdate) => requests.put<IUserLoginResponse>("auth/update", body),
+  login: (body: IUserLogin) => requests.post<UserLoginResponse>("auth/login", body),
+  register: (body: IUserRegister) => requests.post<UserRegisterResponse>("auth/register", body),
+  update: (body: IUserUpdate) => requests.put<UserLoginResponse>("auth/update", body),
   logout: () => requests.post("auth/logout", {}),
 };
 
 const Bookings = {
-  makeBooking: (body: IBooking) => requests.post<IBookingResponse>("bookings", body),
+  makeBooking: (body: IBooking) => requests.post<BookingResponse>("bookings", body),
+  getUserBookings: (email: string) => requests.get<IBooking[]>(`bookings/user/${email}`),
 };
 
 const api = {

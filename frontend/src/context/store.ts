@@ -13,7 +13,7 @@ interface StoreState {
   initializeUser: () => Promise<void>;
   isLoading: boolean;
   setLoading: (loading: boolean) => void;
-  sessionLogOutUser: () => void;
+  invalidTokenLogout: () => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
@@ -34,7 +34,7 @@ export const useStore = create<StoreState>((set) => ({
       toast.error("Logout failed");
     }
   },
-  sessionLogOutUser: () => {
+  invalidTokenLogout: () => {
     set({ user: null });
     localStorage.removeItem(USER_STORAGE_KEY);
     window.location.replace(routes.LOGIN);

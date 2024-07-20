@@ -5,4 +5,5 @@ export const routes = {
   LOGIN: "/login",
   REGISTER: "/register",
   BUSINESS_PAGE: "/businesses/:id",
+  BOOKING_PAGE: "/user/:email",
 };

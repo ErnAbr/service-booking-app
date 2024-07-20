@@ -5,8 +5,6 @@ export interface IUserRegister {
   password: string;
 }
 
-
-
 export interface IUser {
   id: string;
   userName: string;
@@ -16,7 +14,7 @@ export interface IUser {
   updatedAt: string;
 }
 
-export interface IUserRegisterResponse {
+export interface UserRegisterResponse {
   message: string;
 }
 
@@ -31,7 +29,7 @@ export interface IUserUpdate {
   email: string;
 }
 
-export interface IUserLoginResponse {
+export interface UserLoginResponse {
   user: IUser;
   message: string;
 }
