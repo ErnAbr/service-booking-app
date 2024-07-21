@@ -29,7 +29,12 @@ export function Topbar() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && pillRef.current && !pillRef.current.contains(event.target as Node)) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        pillRef.current &&
+        !pillRef.current.contains(event.target as Node)
+      ) {
         setMenuOpen(false);
       }
     };
