@@ -5,7 +5,7 @@ import { useStore } from "src/context/store";
 import { toast } from "react-toastify";
 import { generateTimeSlots } from "./helpers/generateTimeSlots";
 import { ApiError } from "src/types/error";
-import api from "src/api/api";
+import { api } from "src/api/api";
 import { handleApiError } from "src/utils/handleApiErrors";
 import { format } from "date-fns";
 import styles from "./DateAndTimePicker.module.scss";

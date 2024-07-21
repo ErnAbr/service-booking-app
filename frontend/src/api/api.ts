@@ -27,17 +27,24 @@ axios.defaults.withCredentials = true;
 axios.interceptors.response.use(
   (response) => response,
   (error: CustomAxiosError) => {
-    if (error.response?.status === 401) {
-      const errorMessage = (error.response?.data as ErrorResponse).message;
+    if (error.response) {
       const store = useStore.getState();
-      store.invalidTokenLogout();
-      toast.error(errorMessage);
-      error.handled = true;
-    }
-    if (error.response?.status === 403) {
-      const errorMessage = (error.response?.data as ErrorResponse).message;
-      window.location.replace(routes.HOME);
-      toast.error(errorMessage);
+      const errorMessage = (error.response.data as ErrorResponse).message;
+
+      switch (error.response.status) {
+        case 401:
+          store.invalidTokenLogout();
+          toast.error(errorMessage);
+          error.handled = true;
+          break;
+        case 403:
+          window.location.replace(routes.HOME);
+          toast.error(errorMessage);
+          break;
+        default:
+          toast.error("An unexpected error occurred");
+          break;
+      }
     }
     return Promise.reject(error);
   },
@@ -74,11 +81,9 @@ const Bookings = {
   getUserBookings: (email: string) => requests.get<IBooking[]>(`bookings/user/${email}`),
 };
 
-const api = {
+export const api = {
   Categories,
   Businesses,
   User,
   Bookings,
 };
-
-export default api;

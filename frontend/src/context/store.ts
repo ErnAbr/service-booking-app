@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { routes } from "../navigation/routes/routes";
 import { toast } from "react-toastify";
-import api from "src/api/api";
+import { api } from "src/api/api";
 import { IUser } from "src/types/user";
 
 const USER_STORAGE_KEY = import.meta.env.VITE_USER_STORAGE_KEY;

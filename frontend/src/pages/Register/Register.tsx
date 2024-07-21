@@ -10,7 +10,7 @@ import { Button } from "src/components/Button/Button";
 import { InputField } from "../../components/InputField/InputField";
 import { addYears, differenceInYears } from "date-fns";
 import { toast } from "react-toastify";
-import api from "src/api/api";
+import { api } from "src/api/api";
 import { handleApiError } from "src/utils/handleApiErrors";
 import { ApiError } from "src/types/error";
 

@@ -5,9 +5,15 @@ import { toast } from "react-toastify";
 import { routes } from "src/navigation/routes/routes";
 import { useEffect } from "react";
 import { CircularProgress, Typography } from "@mui/material";
+import { useQueryClient } from "@tanstack/react-query";
+import { BUSINESS_QUERY_KEY } from "src/api/queryKeys";
+import { IBusiness } from "src/types/business";
+import { MyBookingsTab } from "src/components/MyBookingsTab/MyBookingsTab";
 
 export const BookingPage = () => {
   const { email } = useParams<{ email: string }>();
+  const queryClient = useQueryClient();
+  const businesses = queryClient.getQueryData<IBusiness[]>([BUSINESS_QUERY_KEY]);
   const { data: bookings, error, isLoading } = useBookings(email!);
   const navigate = useNavigate();
 
@@ -18,10 +24,8 @@ export const BookingPage = () => {
     }
   }, [error, navigate]);
 
-  console.log(bookings);
-
   return (
-    <div>
+    <>
       {isLoading && (
         <div className={styles.loadingContainer}>
           <CircularProgress color="secondary" />
@@ -30,6 +34,7 @@ export const BookingPage = () => {
           </Typography>
         </div>
       )}
-    </div>
+      {bookings && businesses && <MyBookingsTab bookings={bookings} businesses={businesses} />}
+    </>
   );
 };

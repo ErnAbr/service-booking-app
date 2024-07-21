@@ -3,9 +3,9 @@ import React, { ReactNode } from "react";
 interface CardProps {
   image: string;
   category: string;
-  title: string;
-  subtitle: string | ReactNode;
-  description: string;
+  title: ReactNode;
+  subtitle: ReactNode;
+  description: ReactNode;
   children?: ReactNode;
   cardBody?: string;
   cardClass?: string;
@@ -17,7 +17,7 @@ interface CardProps {
   bottomClass?: string;
 }
 
-export const Card: React.FC<CardProps> = ({
+export const Card = ({
   image,
   category,
   title,
@@ -32,7 +32,7 @@ export const Card: React.FC<CardProps> = ({
   subtitleClass,
   descriptionClass,
   bottomClass,
-}) => {
+}: CardProps) => {
   return (
     <div className={cardClass}>
       <img className={imgClass} src={image} alt="card-image" />
@@ -43,7 +43,7 @@ export const Card: React.FC<CardProps> = ({
         <h4 className={titleClass}>{title}</h4>
         <div>
           <div className={subtitleClass}>{subtitle}</div>
-          <p className={descriptionClass}>{description}</p>
+          <div className={descriptionClass}>{description}</div>
         </div>
         <div className={bottomClass}>{children}</div>
       </div>

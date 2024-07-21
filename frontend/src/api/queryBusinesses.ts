@@ -1,4 +1,4 @@
-import api from "./api";
+import {api} from "./api";
 import { useQuery } from "@tanstack/react-query";
 import { BUSINESS_QUERY_KEY } from "./queryKeys";
 import { IBusiness } from "src/types/business";

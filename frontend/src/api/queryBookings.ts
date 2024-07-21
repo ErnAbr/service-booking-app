@@ -1,4 +1,4 @@
-import api from "./api";
+import { api } from "./api";
 import { useQuery } from "@tanstack/react-query";
 import { BOOKING_QUERY_KEY } from "./queryKeys";
 import { IBooking } from "src/types/booking";
