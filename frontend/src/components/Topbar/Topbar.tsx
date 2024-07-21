@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoLogoTux } from "react-icons/io";
 import { Button } from "../Button/Button";
 import styles from "./Topbar.module.scss";
@@ -16,6 +16,8 @@ const navLinks = [
 
 export function Topbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const pillRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
   const user = useStore((state) => state.user);
@@ -24,6 +26,19 @@ export function Topbar() {
   const handlePillClick = () => {
     setMenuOpen(!menuOpen);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && pillRef.current && !pillRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={styles.topbarContainer}>
@@ -47,9 +62,11 @@ export function Topbar() {
       <div className={styles.authSection}>
         {user ? (
           <>
-            <Pill text={user.userName.substring(0, 1).toUpperCase()} onClick={handlePillClick} />
+            <div ref={pillRef}>
+              <Pill text={user.userName.substring(0, 1).toUpperCase()} onClick={handlePillClick} />
+            </div>
             {menuOpen && (
-              <div className={styles.menu}>
+              <div className={styles.menu} ref={menuRef}>
                 <button
                   onClick={() => {
                     const userAccountPage = routes.ACCOUNT_PAGE;
