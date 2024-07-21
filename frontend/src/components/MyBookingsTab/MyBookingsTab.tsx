@@ -3,7 +3,7 @@ import styles from "./MyBookingsTab.module.scss";
 import { IBooking } from "src/types/booking";
 import { IBusiness } from "src/types/business";
 import { CardMyBookings } from "src/components/CardMyBookings/CardMyBookings";
-import { compareAsc, isBefore, isToday, isAfter, parseISO } from "date-fns";
+import { compareAsc } from "date-fns";
 
 interface MyBookingsProps {
   bookings: IBooking[];

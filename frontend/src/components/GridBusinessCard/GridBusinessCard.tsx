@@ -2,15 +2,16 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { CardBusiness } from "../CardBusiness/CardBusiness";
 import { Grid } from "../Grid/Grid";
 import styles from "./GridBusinessCard.module.scss";
-import { useBusinesses } from "src/api/queryBusinesses";
+import { IBusiness } from "src/types/business";
 
 interface CardCategoryGridProps {
-  category: string;
+  filteredItems: IBusiness[] | undefined;
+  page: number;
+  itemsPerPage: number;
 }
 
-export const GridBusinessCard = ({ category }: CardCategoryGridProps) => {
+export const GridBusinessCard = ({ filteredItems, page, itemsPerPage }: CardCategoryGridProps) => {
   const [favorites, setFavorites] = useLocalStorage<string[]>("favorites", []);
-  const { data: businesses } = useBusinesses();
 
   const toggleFavorite = (cardId: string) => {
     setFavorites((prevFavorites: string[]) => {
@@ -21,9 +22,9 @@ export const GridBusinessCard = ({ category }: CardCategoryGridProps) => {
     });
   };
 
-  const filteredItems = category
-    ? businesses?.filter((props) => props.category.toLowerCase() === category.toLowerCase())
-    : businesses;
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedItems = filteredItems?.slice(startIndex, endIndex);
 
   return (
     <Grid
@@ -32,7 +33,7 @@ export const GridBusinessCard = ({ category }: CardCategoryGridProps) => {
       headingClass={styles.heading}
       gridClass={styles.grid}
     >
-      {filteredItems?.map((props) => (
+      {paginatedItems?.map((props) => (
         <CardBusiness
           key={props.id}
           isFavorite={favorites.includes(props.id)}

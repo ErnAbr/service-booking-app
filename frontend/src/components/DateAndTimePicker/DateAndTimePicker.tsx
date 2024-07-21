@@ -7,7 +7,7 @@ import { generateTimeSlots } from "./helpers/generateTimeSlots";
 import { ApiError } from "src/types/error";
 import { api } from "src/api/api";
 import { handleApiError } from "src/utils/handleApiErrors";
-import { format } from "date-fns";
+import { format, isAfter, isSameDay } from "date-fns";
 import styles from "./DateAndTimePicker.module.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -50,6 +50,7 @@ export const DateAndTimePicker = ({ id, setIsModalOpen }: DateAndTimePickerProps
     orderDateTime.setMinutes(minutes);
 
     const bookingData = {
+      id: id,
       companyId: id,
       orderDateTime: orderDateTime,
       userEmail: user.email,
@@ -63,6 +64,14 @@ export const DateAndTimePicker = ({ id, setIsModalOpen }: DateAndTimePickerProps
     } catch (error) {
       handleApiError(error as ApiError);
     }
+  };
+
+  const isTimeSlotDisabled = (time: string) => {
+    if (!selectedDate) return false;
+    const [hours, minutes] = time.split(":").map(Number);
+    const now = new Date();
+    const slotTime = new Date(selectedDate.setHours(hours, minutes));
+    return isSameDay(selectedDate, now) && isAfter(now, slotTime);
   };
 
   return (
@@ -85,7 +94,7 @@ export const DateAndTimePicker = ({ id, setIsModalOpen }: DateAndTimePickerProps
               key={index}
               className={`${styles.timeSlotButton} ${selectedTime === time ? styles.selected : ""}`}
               onClick={() => setSelectedTime(time)}
-              disabled={bookedSlots.includes(time)}
+              disabled={bookedSlots.includes(time) || isTimeSlotDisabled(time)}
             >
               {time}
             </button>

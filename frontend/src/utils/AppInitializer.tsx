@@ -28,7 +28,7 @@ export const AppInitializer = ({ children }: AppInitializerProps) => {
       }
     };
     initializeApp();
-  }, [initializeUser]);
+  }, [initializeUser, setIsUserLoading]);
 
   if (isBusinessesLoading || isCategoriesLoading || isUserLoading) {
     return (

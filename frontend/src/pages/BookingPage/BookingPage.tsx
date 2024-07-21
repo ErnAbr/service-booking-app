@@ -24,6 +24,16 @@ export const BookingPage = () => {
     }
   }, [error, navigate]);
 
+  if (!bookings || bookings.length === 0) {
+    return (
+      <div className={styles.noBookingsContainer}>
+        <Typography variant="h6" mt={1}>
+          No bookings found.
+        </Typography>
+      </div>
+    );
+  }
+
   return (
     <>
       {isLoading && (

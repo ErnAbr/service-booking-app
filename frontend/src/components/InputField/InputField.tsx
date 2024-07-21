@@ -1,15 +1,21 @@
-import { FieldError, UseFormRegister } from "react-hook-form";
-import styles from "./InputField.module.scss"; // Create a corresponding CSS module file
+import { FieldError, FieldValues, Path, UseFormRegister } from "react-hook-form";
+import styles from "./InputField.module.scss";
 
-interface InputFieldProps {
+interface InputFieldProps<T extends FieldValues> {
   label: string;
-  name: string;
+  name: Path<T>;
   type?: string;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<T>;
   error?: FieldError;
 }
 
-export const InputField = ({ label, name, type = "text", register, error }: InputFieldProps) => {
+export const InputField = <T extends FieldValues>({
+  label,
+  name,
+  type = "text",
+  register,
+  error,
+}: InputFieldProps<T>) => {
   return (
     <div className={styles.inputGroup}>
       <label>{label}</label>

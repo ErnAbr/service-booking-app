@@ -1,4 +1,3 @@
-import { useStore } from "../../context/store";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -60,11 +59,10 @@ export const Register = () => {
     shouldFocusError: false,
   });
 
-  const user = useStore((state) => state.user);
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
-    const { repPassword, dateOfBirth, ...rest } = data;
+    const { dateOfBirth, ...rest } = data;
     const age = Number(calculateAge(dateOfBirth));
     const submissionData = { ...rest, age };
 

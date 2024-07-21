@@ -8,7 +8,7 @@ import { routes } from "../../navigation/routes/routes";
 import { Link, useNavigate } from "react-router-dom";
 import { useStore } from "../../context/store";
 import { InputField } from "../../components/InputField/InputField";
-import {api} from "src/api/api";
+import { api } from "src/api/api";
 import { toast } from "react-toastify";
 import { handleApiError } from "src/utils/handleApiErrors";
 import { ApiError } from "src/types/error";
@@ -36,7 +36,6 @@ export const Login = () => {
   });
 
   const setUser = useStore((state) => state.setUser);
-  const user = useStore((state) => state.user);
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {

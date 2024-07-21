@@ -14,5 +14,7 @@ export const useBookings = (email: string) => {
     queryFn: () => fetchBookings(email),
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 10,
+    refetchOnMount: "always",
+    refetchOnWindowFocus: "always",
   });
 };
