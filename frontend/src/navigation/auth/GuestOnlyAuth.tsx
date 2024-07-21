@@ -12,6 +12,7 @@ export const GuestOnlyAuth = () => {
     if (user) {
       toast.error("You Are Already Logged In");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return user ? <Navigate to={routes.HOME} /> : <Outlet />;

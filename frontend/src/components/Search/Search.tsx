@@ -12,6 +12,7 @@ export const Search = () => {
   };
 
   const onClick = () => {
+    // eslint-disable-next-line no-console
     console.log(searchText);
   };
 

@@ -24,27 +24,24 @@ export const BookingPage = () => {
     }
   }, [error, navigate]);
 
-  if (!bookings || bookings.length === 0) {
-    return (
-      <div className={styles.noBookingsContainer}>
-        <Typography variant="h6" mt={1}>
-          No bookings found.
-        </Typography>
-      </div>
-    );
-  }
-
   return (
     <>
-      {isLoading && (
+      {isLoading ? (
         <div className={styles.loadingContainer}>
           <CircularProgress color="secondary" />
           <Typography variant="h6" mt={1}>
             Loading Bookings...
           </Typography>
         </div>
+      ) : bookings && bookings.length > 0 && businesses ? (
+        <MyBookingsTab bookings={bookings} businesses={businesses} />
+      ) : (
+        <div className={styles.noBookingsContainer}>
+          <Typography variant="h6" mt={1}>
+            No bookings found.
+          </Typography>
+        </div>
       )}
-      {bookings && businesses && <MyBookingsTab bookings={bookings} businesses={businesses} />}
     </>
   );
 };

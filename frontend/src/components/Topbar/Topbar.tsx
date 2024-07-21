@@ -50,7 +50,15 @@ export function Topbar() {
             <Pill text={user.userName.substring(0, 1).toUpperCase()} onClick={handlePillClick} />
             {menuOpen && (
               <div className={styles.menu}>
-                <button onClick={() => console.log("My Account")}>My Account</button>
+                <button
+                  onClick={() => {
+                    const userAccountPage = routes.ACCOUNT_PAGE;
+                    navigate(userAccountPage);
+                    setMenuOpen(false);
+                  }}
+                >
+                  My Account
+                </button>
                 <button
                   onClick={() => {
                     const userBookingRoute = routes.BOOKING_PAGE.replace(":email", user.email);

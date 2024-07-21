@@ -4,6 +4,7 @@ import { useStore } from "src/context/store";
 import styles from "../styles/App.module.scss";
 import { useBusinesses } from "src/api/queryBusinesses";
 import { useCategories } from "src/api/queryCategories";
+import { toast } from "react-toastify";
 
 interface AppInitializerProps {
   children: ReactNode;
@@ -21,8 +22,8 @@ export const AppInitializer = ({ children }: AppInitializerProps) => {
     const initializeApp = async () => {
       try {
         await initializeUser();
-      } catch (error) {
-        console.error("Failed to initialize app", error);
+      } catch {
+        toast("Failed to initialize app");
       } finally {
         setIsUserLoading(false);
       }

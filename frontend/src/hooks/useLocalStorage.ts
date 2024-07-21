@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export function useLocalStorage<T>(
   key: string,
@@ -8,8 +9,7 @@ export function useLocalStorage<T>(
     try {
       const item = localStorage.getItem(key);
       return item ? (JSON.parse(item) as T) : initialValue;
-    } catch (error) {
-      console.error(error);
+    } catch {
       return initialValue;
     }
   });
@@ -19,8 +19,8 @@ export function useLocalStorage<T>(
       const valueToStore = value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
       localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {
-      console.error(error);
+    } catch {
+      toast.error("Failed Setting Value To Local Storage");
     }
   };
 

@@ -14,6 +14,7 @@ export const RequireAuth = () => {
       toast.error("You must be logged in to view this page.");
       toastShownRef.current = true;
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return user ? <Outlet /> : <Navigate to={routes.LOGIN} />;

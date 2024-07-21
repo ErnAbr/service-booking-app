@@ -4,13 +4,14 @@ import { Services } from "../../pages/Services";
 import { AboutUs } from "../../pages/AboutUs";
 import { Login } from "../../pages/Login/Login";
 import { Register } from "../../pages/Register/Register";
-import { NotFound } from "../../pages/NotFound";
+import { NotFoundPage } from "../../pages/NotFoundPage/NotFoundPage";
 import { MainLayout } from "../layout/MainLayout";
 import { routes } from "./routes";
 import { BusinessPage } from "src/pages/BusinessPage/BusinessPage";
 import { RequireAuth } from "../auth/RequireAuth";
 import { GuestOnlyAuth } from "../auth/GuestOnlyAuth";
 import { BookingPage } from "src/pages/BookingPage/BookingPage";
+import { MyAccountPage } from "src/pages/MyAccountPage/MyAccountPage";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
         children: [
           { path: routes.BUSINESS_PAGE, element: <BusinessPage /> },
           { path: routes.BOOKING_PAGE, element: <BookingPage /> },
+          { path: routes.ACCOUNT_PAGE, element: <MyAccountPage /> },
         ],
       },
       {
@@ -34,7 +36,7 @@ const router = createBrowserRouter([
           { path: routes.REGISTER, element: <Register /> },
         ],
       },
-      { path: "/not-found", element: <NotFound /> },
+      { path: "/not-found", element: <NotFoundPage /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },

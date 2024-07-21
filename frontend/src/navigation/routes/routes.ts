@@ -6,4 +6,5 @@ export const routes = {
   REGISTER: "/register",
   BUSINESS_PAGE: "/businesses/:id",
   BOOKING_PAGE: "/user/:email",
+  ACCOUNT_PAGE: "/account",
 };
