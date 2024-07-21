@@ -41,9 +41,6 @@ axios.interceptors.response.use(
           window.location.replace(routes.HOME);
           toast.error(errorMessage);
           break;
-        default:
-          toast.error("An unexpected error occurred");
-          break;
       }
     }
     return Promise.reject(error);
