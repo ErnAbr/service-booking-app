@@ -1,7 +1,7 @@
 import {api} from "./api";
 import { useQuery } from "@tanstack/react-query";
 import { BUSINESS_QUERY_KEY } from "./queryKeys";
-import { IBusiness } from "src/types/business";
+import { IBusiness } from "@/types/business";
 
 const fetchBusinesses = async (): Promise<IBusiness[]> => {
   const response = await api.Businesses.getBusinesses();

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { Button } from "../Button/Button";
-import { useStore } from "src/context/store";
+import { useStore } from "@/context/store";
 import { toast } from "react-toastify";
 import { generateTimeSlots } from "./helpers/generateTimeSlots";
-import { ApiError } from "src/types/error";
-import { api } from "src/api/api";
-import { handleApiError } from "src/utils/handleApiErrors";
+import { ApiError } from "@/types/error";
+import { api } from "@/api/api";
+import { handleApiError } from "@/utils/handleApiErrors";
 import { format, isAfter, isSameDay } from "date-fns";
 import styles from "./DateAndTimePicker.module.scss";
 import "react-datepicker/dist/react-datepicker.css";

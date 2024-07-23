@@ -2,7 +2,7 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { CardBusiness } from "../CardBusiness/CardBusiness";
 import { Grid } from "../Grid/Grid";
 import styles from "./GridBusinessCard.module.scss";
-import { IBusiness } from "src/types/business";
+import { IBusiness } from "@/types/business";
 
 interface CardCategoryGridProps {
   filteredItems: IBusiness[] | undefined;

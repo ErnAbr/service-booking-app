@@ -1,14 +1,14 @@
 import styles from "./BookingPage.module.scss";
 import { useNavigate, useParams } from "react-router-dom";
-import { useBookings } from "src/api/queryBookings";
+import { useBookings } from "@/api/queryBookings";
 import { toast } from "react-toastify";
-import { routes } from "src/navigation/routes/routes";
+import { routes } from "@/navigation/routes/routes";
 import { useEffect } from "react";
 import { CircularProgress, Typography } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
-import { BUSINESS_QUERY_KEY } from "src/api/queryKeys";
-import { IBusiness } from "src/types/business";
-import { MyBookingsTab } from "src/components/MyBookingsTab/MyBookingsTab";
+import { BUSINESS_QUERY_KEY } from "@/api/queryKeys";
+import { IBusiness } from "@/types/business";
+import { MyBookingsTab } from "@/components/MyBookingsTab/MyBookingsTab";
 
 export const BookingPage = () => {
   const { email } = useParams<{ email: string }>();

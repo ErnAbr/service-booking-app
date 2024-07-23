@@ -1,6 +1,6 @@
 import styles from "./CardBusinessMainPage.module.scss";
 import { Card } from "../Card/Card";
-import { IBusiness } from "src/types/business";
+import { IBusiness } from "@/types/business";
 import { FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 
 type ServicePageCardProps = IBusiness;

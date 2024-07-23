@@ -1,17 +1,18 @@
+import { constants } from "@/constants";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
-import { useStore } from "src/context/store";
-import { routes } from "src/navigation/routes/routes";
-import { IBooking, BookingResponse } from "src/types/booking";
-import { IBusiness } from "src/types/business";
-import { ICategory } from "src/types/category";
+import { useStore } from "@/context/store";
+import { routes } from "@/navigation/routes/routes";
+import { IBooking, BookingResponse } from "@/types/booking";
+import { IBusiness } from "@/types/business";
+import { ICategory } from "@/types/category";
 import {
   IUserLogin,
   UserLoginResponse,
   IUserRegister,
   UserRegisterResponse,
   IUserUpdate,
-} from "src/types/user";
+} from "@/types/user";
 
 interface CustomAxiosError extends AxiosError {
   handled?: boolean;
@@ -21,7 +22,7 @@ interface ErrorResponse {
   message: string;
 }
 
-axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+axios.defaults.baseURL = constants.API_URL;
 axios.defaults.withCredentials = true;
 
 axios.interceptors.response.use(

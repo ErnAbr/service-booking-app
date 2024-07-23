@@ -1,7 +1,7 @@
 import styles from "./CardMyBookings.module.scss";
-import { IBooking } from "src/types/booking";
-import { IBusiness } from "src/types/business";
-import { Card } from "src/components/Card/Card";
+import { IBooking } from "@/types/booking";
+import { IBusiness } from "@/types/business";
+import { Card } from "@/components/Card/Card";
 import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { FaUser, FaMapMarkerAlt, FaCalendarAlt, FaClock } from "react-icons/fa";
