@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "build": "tsc",
-    "start": "nodemon src/server.ts",
+    "start": "node dist/server.js",
+    "dev": "nodemon src/server.ts",
     "eslint:fix": "npx eslint . --fix",
     "prettier": "npx prettier --write ."
   },
