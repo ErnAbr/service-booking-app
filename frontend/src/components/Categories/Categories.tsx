@@ -27,7 +27,7 @@ export const Categories = ({ iconSize }: CategoryProps) => {
       <h3 className={styles.categoryHeading}>Categories</h3>
       <div className={styles.categoryContainer}>
         {categories?.map((category, index) => {
-          // const IconComponent = iconMapping[category.imageUrl];
+          const IconComponent = iconMapping[category.imageUrl];
           return (
             <Button
               key={index}
@@ -37,8 +37,7 @@ export const Categories = ({ iconSize }: CategoryProps) => {
             >
               <div className={styles.buttonContent}>
                 <IconContext.Provider value={{ color: category.backgroundColor, size: iconSize }}>
-                  {/* <IconComponent /> */}
-                  TEST
+                  <IconComponent />
                 </IconContext.Provider>
                 {category.categoryName}
               </div>
