@@ -11,7 +11,7 @@ import { Button } from "@/components/Button/Button";
 import { SlNotebook } from "react-icons/sl";
 import { useState } from "react";
 import { Modal } from "@/components/modal/modal";
-import { DateAndTimePicker } from "@/components/DateAndTimePicker/DateAndTimePicker";
+// import { DateAndTimePicker } from "@/components/DateAndTimePicker/DateAndTimePicker";
 import { useStore } from "@/context/store";
 import { toast } from "react-toastify";
 
@@ -96,13 +96,13 @@ export const BusinessPage = () => {
           </div>
         </div>
       </div>
-      {isModalOpen && id && (
+      {/* {isModalOpen && id && (
         <>
           <Modal closeModal={() => setIsModalOpen(false)}>
             <DateAndTimePicker setIsModalOpen={() => setIsModalOpen(false)} id={id} />
           </Modal>
         </>
-      )}
+      )} */}
     </div>
   );
 };
