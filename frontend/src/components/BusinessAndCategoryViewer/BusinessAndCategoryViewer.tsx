@@ -9,10 +9,10 @@ import { useQueryClient } from "@tanstack/react-query";
 import { constants } from "@/constants";
 
 interface SearchCategoryProps {
-  category: string;
+  searchCategoryFilter: string;
 }
 
-export const BusinessAndCategoryViewer = ({ category }: SearchCategoryProps) => {
+export const BusinessAndCategoryViewer = ({ searchCategoryFilter }: SearchCategoryProps) => {
   const [page, setPage] = useState(1);
   const itemsPerPage = parseInt(constants.ITEMS_PER_PAGE);
   const queryClient = useQueryClient();
@@ -24,10 +24,10 @@ export const BusinessAndCategoryViewer = ({ category }: SearchCategoryProps) => 
 
   useEffect(() => {
     setPage(1);
-  }, [category]);
+  }, [searchCategoryFilter]);
 
-  const filteredItems = category
-    ? businesses?.filter((props) => props.category.toLowerCase() === category.toLowerCase())
+  const filteredItems = searchCategoryFilter
+    ? businesses?.filter((props) => props.category.toLowerCase() === searchCategoryFilter.toLowerCase())
     : businesses;
 
   const pageCount = Math.ceil((filteredItems?.length || 1) / itemsPerPage);
