@@ -21,10 +21,10 @@ const router = createBrowserRouter([
       { path: routes.HOME, element: <Home /> },
       { path: routes.SERVICES, element: <Services /> },
       { path: routes.ABOUT_US, element: <AboutUs /> },
+      { path: routes.BUSINESS_PAGE, element: <BusinessPage /> },
       {
         element: <RequireAuth />,
         children: [
-          { path: routes.BUSINESS_PAGE, element: <BusinessPage /> },
           { path: routes.BOOKING_PAGE, element: <BookingPage /> },
           { path: routes.ACCOUNT_PAGE, element: <MyAccountPage /> },
         ],
