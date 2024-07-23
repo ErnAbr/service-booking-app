@@ -20,7 +20,7 @@ export const DateAndTimePicker = ({ id, setIsModalOpen }: DateAndTimePickerProps
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [bookedSlots, setBookedSlots] = useState<string[]>([]);
-  const timeSlots = generateTimeSlots();
+  const timeSlots = generateTimeSlots() || [];
   const user = useStore((state) => state.user);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export const DateAndTimePicker = ({ id, setIsModalOpen }: DateAndTimePickerProps
         if (!selectedDate) return;
         const dateStr = format(selectedDate, "yyyy-MM-dd");
         const response = await api.Businesses.getBusinessBookingsByDate(id, dateStr);
-        setBookedSlots(response);
+        setBookedSlots(Array.isArray(response) ? response : []);
       } catch (error) {
         handleApiError(error as ApiError);
       }
