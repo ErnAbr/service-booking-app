@@ -11,16 +11,16 @@ interface CardCategoryGridProps {
 }
 
 export const GridBusinessCard = ({ filteredItems, page, itemsPerPage }: CardCategoryGridProps) => {
-  const [favorites, setFavorites] = useLocalStorage<string[]>("favorites", []);
+  // const [favorites, setFavorites] = useLocalStorage<string[]>("favorites", []);
 
-  const toggleFavorite = (cardId: string) => {
-    setFavorites((prevFavorites: string[]) => {
-      const updatedFavorites = prevFavorites.includes(cardId)
-        ? prevFavorites.filter((id: string) => id !== cardId)
-        : [...prevFavorites, cardId];
-      return updatedFavorites;
-    });
-  };
+  // const toggleFavorite = (cardId: string) => {
+  //   setFavorites((prevFavorites: string[]) => {
+  //     const updatedFavorites = prevFavorites.includes(cardId)
+  //       ? prevFavorites.filter((id: string) => id !== cardId)
+  //       : [...prevFavorites, cardId];
+  //     return updatedFavorites;
+  //   });
+  // };
 
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -36,7 +36,7 @@ export const GridBusinessCard = ({ filteredItems, page, itemsPerPage }: CardCate
       {paginatedItems?.map((props) => (
         <CardBusiness
           key={props.id}
-          isFavorite={favorites.includes(props.id)}
+          // isFavorite={favorites.includes(props.id)}
           toggleFavorite={() => toggleFavorite(props.id)}
           {...props}
         />

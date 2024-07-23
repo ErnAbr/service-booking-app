@@ -12,7 +12,7 @@ interface ServiceCategoryCardProps {
   companyName: string;
   representative: string;
   address: string;
-  isFavorite: boolean;
+  // isFavorite: boolean;
   toggleFavorite: () => void;
 }
 
@@ -23,7 +23,7 @@ export const CardBusiness = ({
   companyName,
   representative,
   address,
-  isFavorite,
+  // isFavorite,
   toggleFavorite,
 }: ServiceCategoryCardProps) => {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ export const CardBusiness = ({
         Book Now
       </Button>
       <div onClick={toggleFavorite}>
-        <FaHeart size="2em" className={isFavorite ? styles.favCard : styles.heartIcon} />
+        {/* <FaHeart size="2em" className={isFavorite ? styles.favCard : styles.heartIcon} /> */}
       </div>
     </Card>
   );
