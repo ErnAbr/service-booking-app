@@ -3,9 +3,10 @@ import { GridBusinessCard } from "../GridBusinessCard/GridBusinessCard";
 import Pagination from "@mui/material/Pagination";
 import styles from "./BusinessAndCategoryViewer.module.scss";
 import { ChangeEvent, useEffect, useState } from "react";
-import { BUSINESS_QUERY_KEY } from "src/api/queryKeys";
-import { IBusiness } from "src/types/business";
+import { BUSINESS_QUERY_KEY } from "../../api/queryKeys";
+import { IBusiness } from "@/types/business";
 import { useQueryClient } from "@tanstack/react-query";
+import { constants } from "@/constants";
 
 interface SearchCategoryProps {
   category: string;
@@ -13,7 +14,7 @@ interface SearchCategoryProps {
 
 export const BusinessAndCategoryViewer = ({ category }: SearchCategoryProps) => {
   const [page, setPage] = useState(1);
-  const itemsPerPage = parseInt(import.meta.env.VITE_ITEMS_PER_PAGE);
+  const itemsPerPage = parseInt(constants.ITEMS_PER_PAGE);
   const queryClient = useQueryClient();
   const businesses = queryClient.getQueryData<IBusiness[]>([BUSINESS_QUERY_KEY]);
 

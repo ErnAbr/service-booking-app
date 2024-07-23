@@ -17,9 +17,9 @@
     "noImplicitAny": true,
     "jsx": "react-jsx",
     //absolute import
-    "baseUrl": ".",
+    // "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src", "./jest.setup.ts"],

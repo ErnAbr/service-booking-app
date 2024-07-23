@@ -5,13 +5,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { BsFillPencilFill } from "react-icons/bs";
 import { routes } from "../../navigation/routes/routes";
 import styles from "./Register.module.scss";
-import { Button } from "src/components/Button/Button";
+import { Button } from "@/components/Button/Button";
 import { InputField } from "../../components/InputField/InputField";
 import { addYears, differenceInYears } from "date-fns";
 import { toast } from "react-toastify";
-import { api } from "src/api/api";
-import { handleApiError } from "src/utils/handleApiErrors";
-import { ApiError } from "src/types/error";
+import { api } from "@/api/api";
+import { handleApiError } from "@/utils/handleApiErrors";
+import { ApiError } from "@/types/error";
 
 const schema = yup
   .object({

@@ -1,4 +1,4 @@
-import { ICategory } from "src/types/category";
+import { ICategory } from "@/types/category";
 import { api } from "./api";
 import { useQuery } from "@tanstack/react-query";
 import { CATEGORY_QUERY_KEY } from "./queryKeys";

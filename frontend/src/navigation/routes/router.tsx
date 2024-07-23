@@ -7,11 +7,11 @@ import { Register } from "../../pages/Register/Register";
 import { NotFoundPage } from "../../pages/NotFoundPage/NotFoundPage";
 import { MainLayout } from "../layout/MainLayout";
 import { routes } from "./routes";
-import { BusinessPage } from "src/pages/BusinessPage/BusinessPage";
+import { BusinessPage } from "@/pages/BusinessPage/BusinessPage";
 import { RequireAuth } from "../auth/RequireAuth";
 import { GuestOnlyAuth } from "../auth/GuestOnlyAuth";
-import { BookingPage } from "src/pages/BookingPage/BookingPage";
-import { MyAccountPage } from "src/pages/MyAccountPage/MyAccountPage";
+import { BookingPage } from "@/pages/BookingPage/BookingPage";
+import { MyAccountPage } from "@/pages/MyAccountPage/MyAccountPage";
 
 const router = createBrowserRouter([
   {

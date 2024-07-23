@@ -2,9 +2,9 @@ import { CircularProgress, Typography } from "@mui/material";
 import { ReactNode, useEffect } from "react";
 import styles from "../styles/App.module.scss";
 import { toast } from "react-toastify";
-import { useStore } from "../context/store";
-import { useBusinesses } from "../api/queryBusinesses";
-import { useCategories } from "../api/queryCategories";
+import { useBusinesses } from "@/api/queryBusinesses";
+import { useCategories } from "@/api/queryCategories";
+import { useStore } from "@/context/store";
 
 interface AppInitializerProps {
   children: ReactNode;

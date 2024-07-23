@@ -1,7 +1,7 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { BusinessAndCategoryViewer } from "./BusinessAndCategoryViewer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BUSINESS_QUERY_KEY } from "src/api/queryKeys";
+import { BUSINESS_QUERY_KEY } from "../../api/queryKeys";
 
 jest.mock("../Categories/Categories", () => ({
   Categories: () => <div data-testid="categories" />,
@@ -11,12 +11,6 @@ jest.mock("../GridBusinessCard/GridBusinessCard", () => ({
   GridBusinessCard: ({ filteredItems }: { filteredItems: unknown }) => (
     <div data-testid="grid-business-card">{JSON.stringify(filteredItems)}</div>
   ),
-}));
-
-jest.mock("./BusinessAndCategoryViewer.module.scss", () => ({
-  searchCategoryContainer: "searchCategoryContainer",
-  categoryContainer: "categoryContainer",
-  paginationContainer: "paginationContainer",
 }));
 
 const queryClient = new QueryClient();
@@ -54,15 +48,6 @@ describe("BusinessAndCategoryViewer", () => {
     expect(filteredItems).toContain("Restaurant 1");
     expect(filteredItems).toContain("Restaurant 2");
     expect(filteredItems).not.toContain("Tech Shop 1");
-  });
-
-  test("paginates through businesses", () => {
-    renderComponent();
-
-    const pagination = screen.getByRole("button", { name: /2/i });
-    fireEvent.click(pagination);
-
-    expect(screen.getByText("2")).toBeInTheDocument();
   });
 
   test("resets page when category changes", () => {

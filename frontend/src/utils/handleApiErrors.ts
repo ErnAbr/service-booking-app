@@ -1,5 +1,5 @@
+import { ApiError } from "@/types/error";
 import { toast } from "react-toastify";
-import { ApiError } from "../types/error";
 
 export const handleApiError = (error: ApiError) => {
   if (error.handled) return;

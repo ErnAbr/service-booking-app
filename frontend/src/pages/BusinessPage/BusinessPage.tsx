@@ -1,22 +1,25 @@
 import { useParams } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import styles from "./BusinessPage.module.scss";
-import { BUSINESS_QUERY_KEY } from "src/api/queryKeys";
-import { IBusiness } from "src/types/business";
-import { CardBusinessMainPage } from "src/components/CardBusinessMainPage/CardBusinessMainPage";
+import { BUSINESS_QUERY_KEY } from "@/api/queryKeys";
+import { IBusiness } from "@/types/business";
+import { CardBusinessMainPage } from "@/components/CardBusinessMainPage/CardBusinessMainPage";
 import { FaUser, FaClock } from "react-icons/fa";
 import { IoShareOutline } from "react-icons/io5";
-import { CardBusinessPageSimple } from "src/components/CardBusinessPageSimple/CardBusinessPageSimple";
-import { Button } from "src/components/Button/Button";
+import { CardBusinessPageSimple } from "@/components/CardBusinessPageSimple/CardBusinessPageSimple";
+import { Button } from "@/components/Button/Button";
 import { SlNotebook } from "react-icons/sl";
 import { useState } from "react";
-import { Modal } from "src/components/modal/modal";
-import { DateAndTimePicker } from "src/components/DateAndTimePicker/DateAndTimePicker";
+import { Modal } from "@/components/modal/modal";
+import { DateAndTimePicker } from "@/components/DateAndTimePicker/DateAndTimePicker";
+import { useStore } from "@/context/store";
+import { toast } from "react-toastify";
 
 export const BusinessPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams<{ id: string }>();
   const queryClient = useQueryClient();
+  const user = useStore((state) => state.user);
 
   const businesses = queryClient.getQueryData<IBusiness[]>([BUSINESS_QUERY_KEY]);
 
@@ -24,6 +27,14 @@ export const BusinessPage = () => {
   const similarBusinesses = businesses?.filter(
     (b) => b.id !== id && b.category === business?.category,
   );
+
+  const handleBookAppointmentClick = () => {
+    if (user) {
+      setIsModalOpen(true);
+    } else {
+      toast.error("Please log in to book an appointment.");
+    }
+  };
 
   if (!business) return <div>Business Not Found</div>;
 
@@ -60,7 +71,7 @@ export const BusinessPage = () => {
         </div>
         <div className={styles.bottomRight}>
           <Button
-            onClick={() => setIsModalOpen(true)}
+            onClick={handleBookAppointmentClick}
             variant="primary"
             className={styles.bookAppointmentButton}
           >

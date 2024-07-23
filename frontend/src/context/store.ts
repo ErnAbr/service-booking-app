@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { routes } from "../navigation/routes/routes";
 import { toast } from "react-toastify";
-import { api } from "src/api/api";
-import { IUser } from "src/types/user";
+import { api } from "@/api/api";
+import { IUser } from "@/types/user";
+import { constants } from "@/constants";
 
-const USER_STORAGE_KEY = import.meta.env.VITE_USER_STORAGE_KEY;
+const USER_STORAGE_KEY = constants.USER_STORAGE_KEY;
 
 interface StoreState {
   user: IUser | null;

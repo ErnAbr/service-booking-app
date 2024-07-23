@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "./MyBookingsTab.module.scss";
-import { IBooking } from "src/types/booking";
-import { IBusiness } from "src/types/business";
-import { CardMyBookings } from "src/components/CardMyBookings/CardMyBookings";
+import { IBooking } from "@/types/booking";
+import { IBusiness } from "@/types/business";
+import { CardMyBookings } from "@/components/CardMyBookings/CardMyBookings";
 import { compareAsc } from "date-fns";
 
 interface MyBookingsProps {

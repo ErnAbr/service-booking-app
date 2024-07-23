@@ -2,7 +2,7 @@ import styles from "./CardBusiness.module.scss";
 import { FaHeart } from "react-icons/fa";
 import { Button } from "../Button/Button";
 import { Card } from "../Card/Card";
-import { routes } from "src/navigation/routes/routes";
+import { routes } from "@/navigation/routes/routes";
 import { useNavigate } from "react-router-dom";
 
 interface ServiceCategoryCardProps {
