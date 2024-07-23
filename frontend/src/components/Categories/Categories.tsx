@@ -12,8 +12,13 @@ interface CategoryProps {
 
 export const Categories = ({ iconSize }: CategoryProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const { data: categories } = useCategories();
+  const { data: categories, error, isLoading } = useCategories();
   const navigate = useNavigate();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading categories</div>;
+
+  console.log('Categories Data:', categories); // Log the categories data
 
   const handleCategoryClick = (categoryName: string) => {
     const toggleCategory =
@@ -22,18 +27,17 @@ export const Categories = ({ iconSize }: CategoryProps) => {
     navigate(toggleCategory ? `/?category=${toggleCategory}` : "/");
   };
 
-  console.log("categories:", categories); // Log categories data
-
   return (
     <>
       <h3 className={styles.categoryHeading}>Categories</h3>
       <div className={styles.categoryContainer}>
         {Array.isArray(categories) && categories.length > 0 ? (
           categories.map((category, index) => {
+            console.log(`Category ${index}:`, category); // Log each category
             const IconComponent = iconMapping[category.imageUrl];
             if (!IconComponent) {
-              console.error(`Icon not found for ${category.imageUrl}`);
-              return null;
+              console.error(`No icon found for ${category.imageUrl}`);
+              return null; // Skip rendering if no icon is found
             }
             return (
               <Button

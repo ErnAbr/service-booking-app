@@ -26,7 +26,6 @@ export const GridBusinessCard = ({ filteredItems, page, itemsPerPage }: CardCate
   const endIndex = startIndex + itemsPerPage;
   const paginatedItems = filteredItems?.slice(startIndex, endIndex);
 
-
   return (
     <Grid
       heading="Popular Businesses"
