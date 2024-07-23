@@ -22,28 +22,38 @@ export const Categories = ({ iconSize }: CategoryProps) => {
     navigate(toggleCategory ? `/?category=${toggleCategory}` : "/");
   };
 
+  console.log("categories:", categories); // Log categories data
+
   return (
     <>
       <h3 className={styles.categoryHeading}>Categories</h3>
       <div className={styles.categoryContainer}>
-        {categories?.map((category, index) => {
-          const IconComponent = iconMapping[category.imageUrl];
-          return (
-            <Button
-              key={index}
-              variant="square"
-              onClick={() => handleCategoryClick(category.categoryName)}
-              isSelected={selectedCategory === category.categoryName.toLowerCase()}
-            >
-              <div className={styles.buttonContent}>
-                <IconContext.Provider value={{ color: category.backgroundColor, size: iconSize }}>
-                  <IconComponent />
-                </IconContext.Provider>
-                {category.categoryName}
-              </div>
-            </Button>
-          );
-        })}
+        {Array.isArray(categories) && categories.length > 0 ? (
+          categories.map((category, index) => {
+            const IconComponent = iconMapping[category.imageUrl];
+            if (!IconComponent) {
+              console.error(`Icon not found for ${category.imageUrl}`);
+              return null;
+            }
+            return (
+              <Button
+                key={index}
+                variant="square"
+                onClick={() => handleCategoryClick(category.categoryName)}
+                isSelected={selectedCategory === category.categoryName.toLowerCase()}
+              >
+                <div className={styles.buttonContent}>
+                  <IconContext.Provider value={{ color: category.backgroundColor, size: iconSize }}>
+                    <IconComponent />
+                  </IconContext.Provider>
+                  {category.categoryName}
+                </div>
+              </Button>
+            );
+          })
+        ) : (
+          <p>No categories available</p>
+        )}
       </div>
     </>
   );
