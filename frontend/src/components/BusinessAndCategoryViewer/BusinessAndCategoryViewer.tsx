@@ -1,4 +1,4 @@
-// import { Categories } from "../Categories/Categories";
+import { Categories } from "../Categories/Categories";
 import { GridBusinessCard } from "../GridBusinessCard/GridBusinessCard";
 import Pagination from "@mui/material/Pagination";
 import styles from "./BusinessAndCategoryViewer.module.scss";
@@ -34,7 +34,9 @@ export const BusinessAndCategoryViewer = ({ category }: SearchCategoryProps) => 
 
   return (
     <div className={styles.searchCategoryContainer}>
-      <div className={styles.categoryContainer}>{/* <Categories iconSize="2em" /> */}</div>
+      <div className={styles.categoryContainer}>
+        <Categories iconSize="2em" />
+      </div>
       <div>
         <GridBusinessCard filteredItems={filteredItems} page={page} itemsPerPage={itemsPerPage} />
         <div className={styles.paginationContainer}>
