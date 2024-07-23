@@ -1,0 +1,21 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./styles/Default.module.scss";
+import { Routes } from "./navigation/routes/router";
+import { AppInitializer } from "./utils/AppInitializer";
+
+const queryClient = new QueryClient();
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AppInitializer>
+        <Routes />
+        <ToastContainer closeOnClick position="bottom-right" theme="colored" />
+      </AppInitializer>
+    </QueryClientProvider>
+  );
+}
+
+export default App;

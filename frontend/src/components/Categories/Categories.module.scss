@@ -1,0 +1,22 @@
+.categoryContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  & button {
+    width: 75% !important;
+    height: 5rem !important;
+    border-radius: 25px !important;
+  }
+
+  .buttonContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.categoryHeading {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,26 @@
+@import "../../styles/MediaQueries.scss";
+
+.inputGroup {
+  width: 80%;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  & label {
+    font-weight: bolder;
+    text-align: left;
+    @include respond-to("tablet") {
+      font-size: smaller;
+    }
+  }
+}
+
+.error {
+  border: 2px solid red;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.875em;
+  margin-bottom: 10px;
+}

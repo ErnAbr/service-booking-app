@@ -39,7 +39,8 @@
       cursor: pointer;
     }
     &.selected {
-      background-color: #7b58efb4;
+      border: 5px solid #7b58ef63;
+      background-color: #7b58ef63;
     }
   }
 }

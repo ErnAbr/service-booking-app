@@ -54,7 +54,13 @@
   background-color: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  padding: 3px;
+  padding: 10px;
+  min-width: 150px;
+}
+
+.menu button:nth-child(1) {
+  color: black;
+  border-bottom: 1px solid black;
 }
 
 .menu button {
@@ -65,6 +71,8 @@
   color: #7248fa;
   font-weight: bolder;
   font-size: 1rem;
+
+  width: 100%;
   &:hover {
     color: #bba4a4;
   }
