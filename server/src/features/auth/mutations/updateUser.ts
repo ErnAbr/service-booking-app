@@ -6,10 +6,15 @@ export const updateUser: RequestHandler = async (req, res) => {
   try {
     const { id, userName, email, ...rest } = req.body;
 
+    if (req.currentUser?.id !== id) {
+      return res.status(403).json({ message: "Invalid Credentials" });
+    }
+
     const existingUserByUserName = await User.findOne({ userName, _id: { $ne: id } });
     if (existingUserByUserName) {
       return res.status(400).json({ message: "Username is already taken by another user" });
     }
+
     const existingUserByEmail = await User.findOne({ email, _id: { $ne: id } });
     if (existingUserByEmail) {
       return res.status(400).json({ message: "Email is already taken by another user" });
