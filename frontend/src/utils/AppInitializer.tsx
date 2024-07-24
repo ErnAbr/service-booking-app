@@ -1,6 +1,6 @@
 import { CircularProgress, Typography } from "@mui/material";
 import { ReactNode, useEffect } from "react";
-import styles from "../styles/App.module.scss";
+import styles from "../styles/app.module.scss";
 import { toast } from "react-toastify";
 import { useBusinesses } from "@/api/queryBusinesses";
 import { useCategories } from "@/api/queryCategories";
