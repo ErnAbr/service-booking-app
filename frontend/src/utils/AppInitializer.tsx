@@ -23,7 +23,7 @@ export const AppInitializer = ({ children }: AppInitializerProps) => {
       try {
         await initializeUser();
       } catch {
-        toast("Failed to initialize app");
+        toast("Failed to initialize app...");
       } finally {
         setIsUserLoading(false);
       }
