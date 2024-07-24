@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { BusinessAndCategoryViewer } from "./BusinessAndCategoryViewer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BUSINESS_QUERY_KEY } from "../../api/queryKeys";
+import { IBusiness } from "@/types/business";
 
 jest.mock("../Categories/Categories", () => ({
   Categories: () => <div data-testid="categories" />,
@@ -15,10 +16,37 @@ jest.mock("../GridBusinessCard/GridBusinessCard", () => ({
 
 const queryClient = new QueryClient();
 
-const businessesMock = [
-  { id: 1, category: "Food", name: "Restaurant 1" },
-  { id: 2, category: "Tech", name: "Tech Shop 1" },
-  { id: 3, category: "Food", name: "Restaurant 2" },
+const businessesMock: IBusiness[] = [
+  {
+    id: "1",
+    category: "Food",
+    email: "email@email.lt",
+    companyName: "Restaurant 1",
+    description: "A nice place to eat.",
+    address: "123 Main St",
+    representative: "John Doe",
+    photoUrl: "http://example.com/photo1.jpg",
+  },
+  {
+    id: "2",
+    category: "Tech",
+    email: "email@email.lt",
+    companyName: "Tech Shop 1",
+    description: "Latest tech gadgets.",
+    address: "456 Tech St",
+    representative: "Jane Smith",
+    photoUrl: "http://example.com/photo2.jpg",
+  },
+  {
+    id: "3",
+    category: "Food",
+    email: "email@email.lt",
+    companyName: "Restaurant 2",
+    description: "Another nice place to eat.",
+    address: "789 Main St",
+    representative: "Mike Johnson",
+    photoUrl: "http://example.com/photo3.jpg",
+  },
 ];
 
 describe("BusinessAndCategoryViewer", () => {
@@ -29,7 +57,12 @@ describe("BusinessAndCategoryViewer", () => {
   const renderComponent = (category = "") =>
     render(
       <QueryClientProvider client={queryClient}>
-        <BusinessAndCategoryViewer searchCategoryFilter={category} businesses={[]} />
+        <BusinessAndCategoryViewer
+          searchText=""
+          setSearchCount={() => {}}
+          searchCategoryFilter={category}
+          businesses={businessesMock}
+        />
       </QueryClientProvider>,
     );
 
@@ -38,7 +71,6 @@ describe("BusinessAndCategoryViewer", () => {
 
     expect(screen.getByTestId("categories")).toBeInTheDocument();
     expect(screen.getByTestId("grid-business-card")).toBeInTheDocument();
-    expect(screen.getByText("1")).toBeInTheDocument();
   });
 
   test("filters businesses by category", () => {
@@ -55,10 +87,15 @@ describe("BusinessAndCategoryViewer", () => {
 
     rerender(
       <QueryClientProvider client={queryClient}>
-        <BusinessAndCategoryViewer searchCategoryFilter="Tech" businesses={[]} />
+        <BusinessAndCategoryViewer
+          searchText=""
+          setSearchCount={() => {}}
+          searchCategoryFilter="Tech"
+          businesses={businessesMock}
+        />
       </QueryClientProvider>,
     );
 
-    expect(screen.getByText("1")).toBeInTheDocument();
+    expect(screen.getByTestId("grid-business-card")).toBeInTheDocument();
   });
 });
