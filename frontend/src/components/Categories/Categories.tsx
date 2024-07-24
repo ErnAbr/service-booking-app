@@ -28,7 +28,7 @@ export const Categories = ({ iconSize }: CategoryProps) => {
     <>
       <h3 className={styles.categoryHeading}>Categories</h3>
       <div className={styles.categoryContainer}>
-        {Array.isArray(categories) && categories.length > 0 ? ( // Add defensive check
+        {Array.isArray(categories) && categories.length > 0 ? (
           categories.map((category, index) => {
             const IconComponent = iconMapping[category.imageUrl];
             return (
