@@ -1,7 +1,7 @@
 {
   "name": "home-service-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "heroku",
   "main": "index.js",
   "scripts": {
     "start": "cd server && npm install && npm run build && npm start",
