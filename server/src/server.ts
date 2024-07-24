@@ -8,7 +8,7 @@ import { envVariables } from "./config/configEnvVariables";
 const server = express();
 connectDB();
 
-server.use(express.json());
+server.use(express.json({ limit: "50mb" }));
 server.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 configMiddlewares(server);
