@@ -35,7 +35,7 @@ export const BusinessAndCategoryViewer = ({
   const pageCount = Math.ceil((filteredItems?.length || 1) / itemsPerPage);
 
   return (
-    <div className={styles.searchCategoryContainer}>
+    <div className={styles.searchCategoryContainer} style={{ fontFamily: "Noto Sans, sans-serif" }}>
       <div className={styles.categoryContainer}>
         <Categories iconSize="2em" />
       </div>
