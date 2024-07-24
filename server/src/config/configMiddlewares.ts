@@ -15,16 +15,5 @@ export const configMiddlewares = (server: Express) => {
     }),
   );
 
-  server.use(
-    helmet({
-      contentSecurityPolicy: {
-        directives: {
-          defaultSrc: ["'self'"],
-          styleSrc: ["'self'", "https://fonts.googleapis.com"],
-          fontSrc: ["'self'", "https://fonts.gstatic.com"],
-        },
-      },
-    }),
-  );
   server.use(cookieParser());
 };
