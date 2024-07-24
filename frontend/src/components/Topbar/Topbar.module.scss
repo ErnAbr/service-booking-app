@@ -39,11 +39,15 @@
     font-size: large;
     font-weight: bolder;
     text-decoration: none;
-
+    color: #7a58ef;
     &:hover {
       cursor: pointer;
       color: #bba4a4;
     }
+  }
+  &:visited,
+  &:active {
+    color: inherit;
   }
 }
 
