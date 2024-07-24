@@ -12,7 +12,7 @@ interface CategoryProps {
 
 export const Categories = ({ iconSize }: CategoryProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const { data: categories } = useCategories();
+  const { data: categories, isLoading: loading } = useCategories();
   const navigate = useNavigate();
 
   const handleCategoryClick = (categoryName: string) => {
@@ -22,28 +22,34 @@ export const Categories = ({ iconSize }: CategoryProps) => {
     navigate(toggleCategory ? `/?category=${toggleCategory}` : "/");
   };
 
+  if (loading) return <div>Loading...</div>;
+
   return (
     <>
       <h3 className={styles.categoryHeading}>Categories</h3>
       <div className={styles.categoryContainer}>
-        {categories?.map((category, index) => {
-          const IconComponent = iconMapping[category.imageUrl];
-          return (
-            <Button
-              key={index}
-              variant="square"
-              onClick={() => handleCategoryClick(category.categoryName)}
-              isSelected={selectedCategory === category.categoryName.toLowerCase()}
-            >
-              <div className={styles.buttonContent}>
-                <IconContext.Provider value={{ color: category.backgroundColor, size: iconSize }}>
-                  <IconComponent />
-                </IconContext.Provider>
-                {category.categoryName}
-              </div>
-            </Button>
-          );
-        })}
+        {Array.isArray(categories) && categories.length > 0 ? ( // Add defensive check
+          categories.map((category, index) => {
+            const IconComponent = iconMapping[category.imageUrl];
+            return (
+              <Button
+                key={index}
+                variant="square"
+                onClick={() => handleCategoryClick(category.categoryName)}
+                isSelected={selectedCategory === category.categoryName.toLowerCase()}
+              >
+                <div className={styles.buttonContent}>
+                  <IconContext.Provider value={{ color: category.backgroundColor, size: iconSize }}>
+                    <IconComponent />
+                  </IconContext.Provider>
+                  {category.categoryName}
+                </div>
+              </Button>
+            );
+          })
+        ) : (
+          <div>No categories available</div>
+        )}
       </div>
     </>
   );
