@@ -33,7 +33,7 @@ export const GridBusinessCard = ({ filteredItems, page, itemsPerPage }: CardCate
       headingClass={styles.heading}
       gridClass={styles.grid}
     >
-      {paginatedItems.length > 0 ? (
+      {Array.isArray(paginatedItems) && paginatedItems.length > 0 ? (
         paginatedItems.map((props) => (
           <CardBusiness
             key={props.id}

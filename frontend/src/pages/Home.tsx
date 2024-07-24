@@ -8,7 +8,7 @@ export const Home = () => {
   const params = new URLSearchParams(location.search);
   const searchCategoryFilter = params.get("category") || "";
 
-  const { data: businesses = [], isLoading: loadingBusinesses } = useBusinesses();
+  const { data: businesses, isLoading: loadingBusinesses } = useBusinesses();
 
   if (loadingBusinesses) return <div>Loading Businesses...</div>;
 
@@ -16,7 +16,7 @@ export const Home = () => {
     <>
       <Search />
       <BusinessAndCategoryViewer
-        businesses={businesses}
+        businesses={businesses!}
         searchCategoryFilter={searchCategoryFilter}
       />
     </>
