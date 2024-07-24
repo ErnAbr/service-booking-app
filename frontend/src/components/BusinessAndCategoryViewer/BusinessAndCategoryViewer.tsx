@@ -14,7 +14,7 @@ export const BusinessAndCategoryViewer = ({ searchCategoryFilter }: SearchCatego
   const [page, setPage] = useState(1);
   const itemsPerPage = parseInt(constants.ITEMS_PER_PAGE);
 
-  const { data: businesses } = useBusinesses();
+  const { data: businesses, isLoading: loadingBusinesses } = useBusinesses();
 
   const handlePageChange = (_event: ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -31,6 +31,8 @@ export const BusinessAndCategoryViewer = ({ searchCategoryFilter }: SearchCatego
     : businesses;
 
   const pageCount = Math.ceil((filteredItems?.length || 1) / itemsPerPage);
+
+  if (loadingBusinesses) return <div>Loading Businesses...</div>;
 
   return (
     <div className={styles.searchCategoryContainer}>
