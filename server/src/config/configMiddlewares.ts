@@ -3,7 +3,6 @@ import express, { Express } from "express";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import { envVariables } from "./configEnvVariables";
-import helmet from "helmet";
 
 export const configMiddlewares = (server: Express) => {
   server.use(express.json());
