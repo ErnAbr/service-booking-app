@@ -29,7 +29,7 @@ describe("BusinessAndCategoryViewer", () => {
   const renderComponent = (category = "") =>
     render(
       <QueryClientProvider client={queryClient}>
-        <BusinessAndCategoryViewer category={category} />
+        <BusinessAndCategoryViewer searchCategoryFilter={category} />
       </QueryClientProvider>,
     );
 
@@ -55,7 +55,7 @@ describe("BusinessAndCategoryViewer", () => {
 
     rerender(
       <QueryClientProvider client={queryClient}>
-        <BusinessAndCategoryViewer category="Tech" />
+        <BusinessAndCategoryViewer searchCategoryFilter="Tech" />
       </QueryClientProvider>,
     );
 
