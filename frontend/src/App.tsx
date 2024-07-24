@@ -3,7 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Routes } from "./navigation/routes/router";
 import { AppInitializer } from "./utils/AppInitializer";
-import "@/styles/Default.module.scss";
+import "@/styles/BaseStyles.module.scss";
 
 const queryClient = new QueryClient();
 
