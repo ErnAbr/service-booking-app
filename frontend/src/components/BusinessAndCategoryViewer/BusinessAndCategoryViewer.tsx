@@ -16,7 +16,7 @@ export const BusinessAndCategoryViewer = ({
   businesses,
 }: SearchCategoryProps) => {
   const [page, setPage] = useState(1);
-  const itemsPerPage = parseInt(constants.ITEMS_PER_PAGE) || 8;
+  const itemsPerPage = parseInt(constants.ITEMS_PER_PAGE);
 
   const handlePageChange = (_event: ChangeEvent<unknown>, value: number) => {
     setPage(value);
