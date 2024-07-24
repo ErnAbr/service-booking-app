@@ -7,13 +7,6 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@import "@/styles/Default.module.scss";`,
-      },
-    },
-  },
   resolve: {
     alias: {
       src: "/src",
