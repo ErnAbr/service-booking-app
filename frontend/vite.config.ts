@@ -13,7 +13,7 @@ export default defineConfig({
       "@": "/src",
     },
   },
-  build: {
-    sourcemap: true,
-  },
+  // build: {
+  //   sourcemap: true,
+  // },
 });

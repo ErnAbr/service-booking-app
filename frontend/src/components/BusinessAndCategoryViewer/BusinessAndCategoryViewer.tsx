@@ -4,17 +4,19 @@ import Pagination from "@mui/material/Pagination";
 import styles from "./BusinessAndCategoryViewer.module.scss";
 import { ChangeEvent, useEffect, useState } from "react";
 import { constants } from "@/constants";
-import { useBusinesses } from "@/api/queryBusinesses";
+import { IBusiness } from "@/types/business";
 
 interface SearchCategoryProps {
   searchCategoryFilter: string;
+  businesses: IBusiness[];
 }
 
-export const BusinessAndCategoryViewer = ({ searchCategoryFilter }: SearchCategoryProps) => {
+export const BusinessAndCategoryViewer = ({
+  searchCategoryFilter,
+  businesses,
+}: SearchCategoryProps) => {
   const [page, setPage] = useState(1);
   const itemsPerPage = parseInt(constants.ITEMS_PER_PAGE);
-
-  const { data: businesses } = useBusinesses();
 
   const handlePageChange = (_event: ChangeEvent<unknown>, value: number) => {
     setPage(value);

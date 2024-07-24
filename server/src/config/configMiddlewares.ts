@@ -13,5 +13,6 @@ export const configMiddlewares = (server: Express) => {
       credentials: true,
     }),
   );
+
   server.use(cookieParser());
 };

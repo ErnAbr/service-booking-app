@@ -1,9 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./styles/Default.module.scss";
 import { Routes } from "./navigation/routes/router";
 import { AppInitializer } from "./utils/AppInitializer";
+import "@/styles/Default.module.scss";
 
 const queryClient = new QueryClient();
 
