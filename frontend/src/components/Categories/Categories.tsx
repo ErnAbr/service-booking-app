@@ -12,7 +12,7 @@ interface CategoryProps {
 
 export const Categories = ({ iconSize }: CategoryProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const { data: categories, isLoading: loading } = useCategories();
+  const { data: categories } = useCategories();
   const navigate = useNavigate();
 
   const handleCategoryClick = (categoryName: string) => {
@@ -21,8 +21,6 @@ export const Categories = ({ iconSize }: CategoryProps) => {
     setSelectedCategory(toggleCategory);
     navigate(toggleCategory ? `/?category=${toggleCategory}` : "/");
   };
-
-  if (loading) return <div>Loading...</div>;
 
   return (
     <>
