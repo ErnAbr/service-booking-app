@@ -23,7 +23,7 @@ export const getBookingsByDate: RequestHandler = async (req, res) => {
         hour: "2-digit",
         minute: "2-digit",
         hour12: false,
-        timeZone: "UTC",
+        timeZone: "Europe/Helsinki",
       });
       bookedTimes.push(localTime);
     });

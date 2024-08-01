@@ -1,4 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
+import { toZonedTime } from "date-fns-tz";
 
 interface IBooking extends Document {
   companyId: mongoose.Schema.Types.ObjectId;
@@ -33,6 +34,7 @@ const BookingSchema = new Schema<IBooking>({
     default: true,
   },
 });
+
 
 BookingSchema.set("toJSON", {
   transform: function (_, ret) {
