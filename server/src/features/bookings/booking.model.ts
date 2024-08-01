@@ -34,15 +34,6 @@ const BookingSchema = new Schema<IBooking>({
   },
 });
 
-// BookingSchema.pre("save", function (next) {
-//   const booking = this as IBooking;
-//   const localOrderDateTime = new Date(
-//     booking.orderDateTime.getTime() - booking.orderDateTime.getTimezoneOffset() * 60000,
-//   );
-//   booking.orderDateTime = localOrderDateTime;
-//   next();
-// });
-
 BookingSchema.set("toJSON", {
   transform: function (_, ret) {
     ret.id = ret._id;
