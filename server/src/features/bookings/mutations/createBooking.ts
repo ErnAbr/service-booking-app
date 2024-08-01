@@ -16,7 +16,7 @@ export const createBooking: RequestHandler = async (req, res) => {
       return res.status(404).send({ message: "Company not found" });
     }
 
-    const timeZone = "Europe/Vilnius";
+    const timeZone = "Europe/Helsinki";
     const orderDateInTZ = formatInTimeZone(orderDateTime, timeZone, "yyyy-MM-dd'T'HH:mm:ssXXX");
 
     const existingBooking = await Booking.findOne({ companyId, orderDateTime: orderDateInTZ });
