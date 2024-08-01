@@ -1,6 +1,7 @@
 import Booking from "../booking.model";
 import Company from "../../businesses/business.model";
 import { RequestHandler } from "express";
+import { formatInTimeZone } from "date-fns-tz";
 
 export const createBooking: RequestHandler = async (req, res) => {
   try {
@@ -15,7 +16,10 @@ export const createBooking: RequestHandler = async (req, res) => {
       return res.status(404).send({ message: "Company not found" });
     }
 
-    const existingBooking = await Booking.findOne({ companyId, orderDateTime });
+    const timeZone = "Europe/Vilnius";
+    const orderDateInTZ = formatInTimeZone(orderDateTime, timeZone, "yyyy-MM-dd'T'HH:mm:ssXXX");
+
+    const existingBooking = await Booking.findOne({ companyId, orderDateTime: orderDateInTZ });
     if (existingBooking) {
       return res
         .status(400)
