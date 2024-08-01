@@ -8,6 +8,7 @@ import { ApiError } from "@/types/error";
 import { api } from "@/api/api";
 import { handleApiError } from "@/utils/handleApiErrors";
 import { format, isAfter, isSameDay } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
 import styles from "./DateAndTimePicker.module.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -22,6 +23,8 @@ export const DateAndTimePicker = ({ id, setIsModalOpen }: DateAndTimePickerProps
   const [bookedSlots, setBookedSlots] = useState<string[]>([]);
   const timeSlots = generateTimeSlots();
   const user = useStore((state) => state.user);
+
+  const timeZone = "Europe/Vilnius";
 
   useEffect(() => {
     const fetchBookingSlots = async () => {
@@ -45,7 +48,7 @@ export const DateAndTimePicker = ({ id, setIsModalOpen }: DateAndTimePickerProps
     }
 
     const [hours, minutes] = selectedTime.split(":").map(Number);
-    const orderDateTime = new Date(selectedDate);
+    const orderDateTime = toZonedTime(selectedDate, timeZone);
     orderDateTime.setHours(hours);
     orderDateTime.setMinutes(minutes);
 
