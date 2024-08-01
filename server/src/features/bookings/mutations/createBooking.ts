@@ -26,7 +26,7 @@ export const createBooking: RequestHandler = async (req, res) => {
         .send({ message: "Booking at this time is not possible, please choose another time" });
     }
 
-    await new Booking(req.body).save();
+    await new Booking({ ...req.body, orderDateTime: orderDateInTZ }).save();
     return res.status(201).send({ message: "Booking Successful" });
   } catch (error) {
     console.error(error);
