@@ -10,7 +10,6 @@ import { handleApiError } from "@/utils/handleApiErrors";
 import { format, isAfter, isSameDay } from "date-fns";
 import styles from "./DateAndTimePicker.module.scss";
 import "react-datepicker/dist/react-datepicker.css";
-import { toZonedTime } from "date-fns-tz";
 
 interface DateAndTimePickerProps {
   id: string;
@@ -50,12 +49,10 @@ export const DateAndTimePicker = ({ id, setIsModalOpen }: DateAndTimePickerProps
     orderDateTime.setHours(hours);
     orderDateTime.setMinutes(minutes);
 
-    const formattedDateTime = toZonedTime(orderDateTime, "Europe/Helsinki");
-
     const bookingData = {
       id: id,
       companyId: id,
-      orderDateTime: formattedDateTime,
+      orderDateTime: orderDateTime,
       userEmail: user.email,
       userName: user.userName,
     };

@@ -4,11 +4,14 @@ import { IBooking } from "@/types/booking";
 import { IBusiness } from "@/types/business";
 import { CardMyBookings } from "@/components/CardMyBookings/CardMyBookings";
 import { compareAsc } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
 
 interface MyBookingsProps {
   bookings: IBooking[];
   businesses: IBusiness[];
 }
+
+const TIME_ZONE = "Europe/Helsinki";
 
 export const MyBookingsTab = ({ bookings, businesses }: MyBookingsProps) => {
   const [activeTab, setActiveTab] = useState<"booked" | "completed">("booked");
@@ -45,17 +48,41 @@ export const MyBookingsTab = ({ bookings, businesses }: MyBookingsProps) => {
 
       <div className={styles.bookingsContainer}>
         {activeTab === "booked" &&
-          bookedBookings.map((booking) => {
+          bookedBookings.map((booking, key) => {
             const business = businesses.find((b) => b.id === booking.companyId);
             if (!business) return null;
-            return <CardMyBookings key={booking.id} booking={booking} business={business} />;
+
+            const zonedDate = toZonedTime(booking.orderDateTime, TIME_ZONE);
+
+            return (
+              <CardMyBookings
+                key={key}
+                booking={{
+                  ...booking,
+                  orderDateTime: zonedDate,
+                }}
+                business={business}
+              />
+            );
           })}
 
         {activeTab === "completed" &&
           completedBookings.map((booking) => {
             const business = businesses.find((b) => b.id === booking.companyId);
             if (!business) return null;
-            return <CardMyBookings key={booking.id} booking={booking} business={business} />;
+
+            const zonedDate = toZonedTime(booking.orderDateTime, TIME_ZONE);
+
+            return (
+              <CardMyBookings
+                key={booking.id}
+                booking={{
+                  ...booking,
+                  orderDateTime: zonedDate,
+                }}
+                business={business}
+              />
+            );
           })}
       </div>
     </div>
