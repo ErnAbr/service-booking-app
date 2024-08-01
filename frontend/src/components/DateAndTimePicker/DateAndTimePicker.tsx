@@ -8,7 +8,7 @@ import { ApiError } from "@/types/error";
 import { api } from "@/api/api";
 import { handleApiError } from "@/utils/handleApiErrors";
 import { format, isAfter, isSameDay } from "date-fns";
-import { fromZonedTime, toZonedTime } from "date-fns-tz";
+import { toZonedTime } from "date-fns-tz";
 import styles from "./DateAndTimePicker.module.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -52,7 +52,7 @@ export const DateAndTimePicker = ({ id, setIsModalOpen }: DateAndTimePickerProps
     zonedDateTime.setHours(hours);
     zonedDateTime.setMinutes(minutes);
 
-    const orderDateTime = fromZonedTime(toZonedTime(zonedDateTime, timeZone), timeZone);
+    const orderDateTime = toZonedTime(zonedDateTime, timeZone);
 
     const bookingData = {
       id: id,
